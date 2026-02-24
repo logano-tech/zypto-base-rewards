@@ -1,7 +1,21 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  reactStrictMode: true,
+  transpilePackages: [
+    'viem',
+    'wagmi',
+    '@wagmi/core',
+    '@farcaster/core',
+    '@farcaster/frame-sdk',
+    'ox'  // sageli see Encodable map funktsioon siit tuleb
+  ],
+  experimental: {
+    esmExternals: false,     // fixib async importide probleeme
+  },
+  images: {
+    domains: ['zypto.com', 'ref.zypto.com'],
+  },
+}
 
-export default nextConfig;
+export default nextConfig

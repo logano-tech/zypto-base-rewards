@@ -8,7 +8,7 @@ export default function ZyptoRewardsMiniApp() {
   const [screen, setScreen] = useState<'hook' | 'reveal' | 'features'>('hook');
   const [context, setContext] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { address } = useAccount();
+  const { address: _address } = useAccount();
 
   const referralLink = "https://ref.zypto.com/VMvrJEHIvPb?utm_source=farcaster&utm_medium=miniapp&utm_campaign=base-to-life";
 
@@ -18,7 +18,7 @@ export default function ZyptoRewardsMiniApp() {
         const ctx = await sdk.context;
         setContext(ctx);
         sdk.actions.ready();
-      } catch (e) {
+      } catch (_e) {
         window.location.href = "https://cryptoreferral.info";
       } finally {
         setIsLoading(false);
@@ -77,7 +77,7 @@ export default function ZyptoRewardsMiniApp() {
           <li className="flex gap-4"><span className="text-cyan-400">📍</span> Bill Pay: Utilities & rent in 120+ countries</li>
         </ul>
         <button onClick={downloadApp} className="w-full bg-gradient-to-r from-cyan-500 to-lime-500 text-black font-black py-6 rounded-3xl text-2xl active:scale-95">DOWNLOAD & GET STARTED</button>
-        <p className="text-center text-xs text-gray-500 mt-8">Join 100,000+ users. I've been using Zypto to fund my daily life with Base yields.</p>
+        <p className="text-center text-xs text-gray-500 mt-8">Join 100,000+ users. I&apos;ve been using Zypto to fund my daily life with Base yields. It&apos;s the only non-custodial app that actually spends like cash.</p>
       </div>
     </div>
   );
