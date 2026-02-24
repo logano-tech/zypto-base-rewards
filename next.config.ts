@@ -11,8 +11,7 @@ const nextConfig: NextConfig = {
     'ox'  // sageli see Encodable map funktsioon siit tuleb
   ],
   experimental: {
-    esmExternals: false,     // fixib async importide probleeme
-  },
+      },
   images: {
     domains: ['zypto.com', 'ref.zypto.com'],
   },
