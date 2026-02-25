@@ -4,7 +4,8 @@
     "payload": "eyJkb21haW4iOiJ6eXBsaW5rLW1pbmlhcHAudmVyY2VsLmFwcCJ9",
     "signature": "yBEbybiSeyrrc7vIs6Z1AaHA+U1SPjLnOZCsGuOMYjFlNO4RMSkuz/A8GNTr9bQDmAATb9USizQ15debYv0rxxs="
   }
-  },
+}
+    },
   "frame": {
     "version": "1",
     "name": "Zypto Rewards Hub",
