@@ -17,6 +17,9 @@
     "description": "Verify wallet to unlock rewards",
     "tagline": "Spend Crypto IRL",
     "primaryCategory": "finance",
+    "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
+    "castShareUrl": "https://zypto-base-rewards.vercel.app/",
+    "tags": ["rewards", "base", "finance", "crypto", "visa"],
     "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "screenshotUrls": [
       "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
