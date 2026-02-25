@@ -1,1 +1,17 @@
-
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOiA4Njk5OTIsICJ0eXBlIjogImN1c3RvZHkiLCAia2V5IjogIjB4N0U1RjM2RDY4RjA5YzhCQUE3YmU0YmU0OEY0ZEY0ZEY0ZEY0ZEY0ZCJ9",
+    "payload": "eyJkb21haW4iOiAienlwbGluay1taW5pYXBwLnZlcmNlbC5hcHAifQ",
+    "signature": "MHhlNmY0ZGE4MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MmZlYTM0MWM"
+  },
+  "frame": {
+    "version": "1",
+    "name": "Zypto Rewards Hub",
+    "iconUrl": "https://zyplink-miniapp.vercel.app/icon.png",
+    "homeUrl": "https://zyplink-miniapp.vercel.app",
+    "imageUrl": "https://zyplink-miniapp.vercel.app/images/zypto-base-hook.png",
+    "buttonTitle": "Check Eligibility",
+    "splashImageUrl": "https://zyplink-miniapp.vercel.app/images/zypto-base-hook.png",
+    "splashBackgroundColor": "#000000"
+  }
+}
