@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   other: {
     'fc:frame': 'vNext',
     'fc:frame:image': 'https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png',
-    'fc:frame:button:1': 'Check', // Muudetud lühemaks, et ühtida manifestiga
+    'fc:frame:button:1': 'Check', // Täpne vastavus manifestiga
     'fc:frame:post_url': 'https://zypto-base-rewards.vercel.app/api/frame',
     'farcaster:app:name': 'Zypto Rewards',
     'farcaster:app:icon': 'https://zypto-base-rewards.vercel.app/icon.png',
