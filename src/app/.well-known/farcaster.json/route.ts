@@ -1,4 +1,15 @@
 import { NextResponse } from 'next/server';
+
+export async function GET() {
+  // See vastab brauserile
+  return NextResponse.json({ message: "Hub is active" });
+}
+
+export async function POST() {
+  // See vastab Farcasterile
+  // Sinu Frame loogika siia...
+}
+import { NextResponse } from 'next/server';
 import { getFarcasterDomainManifest } from '../../../lib/utils';
 
 export async function GET() {
