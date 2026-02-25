@@ -60,11 +60,17 @@ export default function HubPage() {
         </div>
 
         <button 
-          onClick={() => sdk.actions.openUrl("https://ref.zypto.com/VMvrJEHIvPb")}
-          className="w-full bg-cyan-500 hover:bg-cyan-600 text-black font-black py-5 rounded-2xl text-xl transition-transform active:scale-95"
-        >
-          CLAIM $5 BONUS NOW
-        </button>
+  onClick={() => {
+    if (typeof window !== 'undefined' && sdk?.actions?.openUrl) {
+      sdk.actions.openUrl("https://ref.zypto.com/VMvrJEHIvPb");
+    } else {
+      window.open("https://ref.zypto.com/VMvrJEHIvPb", "_blank");
+    }
+  }}
+  className="w-full bg-cyan-500 hover:bg-cyan-600 text-black font-black py-5 rounded-2xl text-xl transition-transform active:scale-95"
+>
+  CLAIM $5 BONUS NOW
+</button>
         
         <p className="mt-8 text-xs text-gray-600 italic">
           Real World Ready. Built on Base.
