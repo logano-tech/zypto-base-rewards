@@ -1,41 +1,43 @@
 {
-  "accountAssociation": {
-    "header": "eyJmaWQiOjI3ODkxNTcsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhFOTFmMjA0RGEwMUE5ZTVFRDY1NDlhZjI5NTBBMDJDQzc0OUJFYTg3In0",
-    "payload": "eyJkb21haW4iOiJ6eXB0by1iYXNlLXJld2FyZHMudmVyY2VsLmFwcCJ9",
-    "signature": "qoPazIaR3VZwPeVBQgjbhtczXUtz5DIEB2V16gLegZBwekKxaUTL6MZGe74r5ArH3LaxTI8Bc8FXszbMyuRzfBw="
-  },
   "frame": {
     "version": "1",
     "name": "Zypto Rewards",
     "iconUrl": "https://zypto-base-rewards.vercel.app/icon.png",
-    "homeUrl": "https://zypto-base-rewards.vercel.app/",
+    "homeUrl": "https://zypto-base-rewards.vercel.app",
     "imageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-    "buttonTitle": "Check",
     "button": {
-      "title": "Check",
+      "title": "Check Rewards",
       "action": {
         "type": "launch_app",
         "name": "Zypto Rewards",
-        "url": "https://zypto-base-rewards.vercel.app/"
+        "url": "https://zypto-base-rewards.vercel.app"
       }
     },
     "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "splashBackgroundColor": "#050505",
-    "subtitle": "Claim Rewards",
-    "description": "Verify wallet to unlock rewards",
-    "tagline": "Spend Crypto IRL",
-    "primaryCategory": "finance",
     "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
-    "castShareUrl": "https://zypto-base-rewards.vercel.app/",
-    "tags": ["rewards", "base", "finance", "crypto", "visa"],
-    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+    "subtitle": "Get Rewards",
+    "description": "Verify wallet and get rewards",
     "screenshotUrls": [
-      "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-      "https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png",
-      "https://zypto-base-rewards.vercel.app/images/zypto-base-perks.png"
+      "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"
     ],
-    "ogTitle": "Zypto Rewards",
-    "ogDescription": "Claim rewards now",
-    "ogImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"
+    "primaryCategory": "finance",
+    "tags": [
+      "rewards",
+      "base",
+      "finance",
+      "visa"
+    ],
+    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+    "tagline": "Spend Your Crypto",
+    "ogTitle": "Zypto Rewards Hub",
+    "ogDescription": "Verify your wallet and unlock exclusive rewards on Base",
+    "ogImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+    "castShareUrl": "https://zypto-base-rewards.vercel.app"
+  },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjI3ODkxNTcsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhFOTFmMjA0RGEwMUE5ZTVFRDY1NDlhZjI5NTBBMDJDQzc0OUJFYTg3In0",
+    "payload": "eyJkb21haW4iOiJ6eXB0by1iYXNlLXJld2FyZHMudmVyY2VsLmFwcCJ9",
+    "signature": "qoPazIaR3VZwPeVBQgjbhtczXUtz5DIEB2V16gLegZBwekKxaUTL6MZGe74r5ArH3LaxTI8Bc8FXszbMyuRzfBw="
   }
 }
