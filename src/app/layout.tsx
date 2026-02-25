@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-// Loome Embed objekti vastavalt Farcasteri nõuetele
+// See objekt muudab su äpi Warpcastis nähtavaks ja "Valid" staatusega
 const miniAppEmbed = JSON.stringify({
   version: "1",
   type: "miniapp",
@@ -8,20 +8,37 @@ const miniAppEmbed = JSON.stringify({
   iconUrl: "https://zypto-base-rewards.vercel.app/icon.png",
   imageUrl: "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
   homeUrl: "https://zypto-base-rewards.vercel.app/",
-  buttonTitle: "Check"
+  button: {
+    title: "Check",
+    action: {
+      type: "launch_app",
+      name: "Zypto Rewards",
+      url: "https://zypto-base-rewards.vercel.app/"
+    }
+  }
 });
 
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
   description: 'Verify and claim rewards',
+  openGraph: {
+    title: 'Zypto Rewards',
+    description: 'Verify and claim rewards',
+    images: ['https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png'],
+  },
   other: {
-    // See on see kriitiline "konks" – JSON peab olema meta-tagi sees tekstina
+    // Uus standard: stringified JSON
     'fc:miniapp': miniAppEmbed,
-    'fc:frame': miniAppEmbed, // Tagasiühilduvuse jaoks
+    // Tagasiühilduvus: stringified JSON
+    'fc:frame': miniAppEmbed,
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body style={{ backgroundColor: '#050505', margin: 0, overflow: 'hidden' }}>
