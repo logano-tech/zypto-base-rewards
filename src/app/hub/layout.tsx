@@ -1,4 +1,11 @@
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: 'Zypto Rewards Hub',
@@ -23,8 +30,15 @@ export default function HubLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section style={{ backgroundColor: 'black', minHeight: '100vh' }}>
+    <div style={{ 
+      backgroundColor: 'black', 
+      minHeight: '100vh', 
+      width: '100%',
+      margin: 0,
+      padding: 0,
+      overflowX: 'hidden' 
+    }}>
       {children}
-    </section>
+    </div>
   );
 }
