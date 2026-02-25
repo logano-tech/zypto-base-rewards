@@ -15,7 +15,7 @@
     "splashBackgroundColor": "#050505",
     "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
     "subtitle": "Unlock Base Rewards",
-    "description": "Verify your wallet to unlock your ZYP bonus and access your non custodial Visa card.",
+    "description": "Verify your wallet to unlock your bonus and access your non custodial Visa card.",
     "tagline": "Spend USDC and ETH IRL",
     "primaryCategory": "finance",
     "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
@@ -26,7 +26,7 @@
     ],
     "tags": ["rewards", "base", "visa", "crypto", "finance"],
     "ogTitle": "Zypto Rewards Hub",
-    "ogDescription": "Get ZYP bonus and spend your Base yields IRL with Zypto Visa card.",
+    "ogDescription": "Get your bonus and spend rewards IRL with Zypto Visa card.",
     "ogImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"
   }
 }
