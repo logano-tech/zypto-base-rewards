@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import sdk from '@farcaster/miniapp-sdk';
 
 export default function HubPage() {
@@ -10,44 +10,44 @@ export default function HubPage() {
   useEffect(() => {
     const init = async () => {
       try {
-        // 1. Ootame SDK laadimist
+        // 1. Käivitame Farcaster SDK ja küsime kasutaja andmeid
         const ctx = await sdk.context;
         setContext(ctx);
         
-        // 2. Teatame valmidusest
+        // 2. Teatame Farcasterile, et leht on valmis (eemaldab loading-ekraani)
         await sdk.actions.ready();
         setIsSdkReady(true);
       } catch (error) {
-        console.error("SDK Error:", error);
-        setIsSdkReady(true); // Isegi veaga lubame nuppe kuvada
+        console.error("SDK initialization failed", error);
+        // Lubame lehel laadida ka juhul, kui SDK ei vasta
+        setIsSdkReady(true);
       }
     };
     init();
   }, []);
 
-  // See funktsioon kasutab Farcasteri spetsiifilist akna avamise loogikat
-  const handleClaimClick = async () => {
-    const targetUrl = "https://ref.zypto.com/VMvrJEHIvPb";
-    try {
-      // Proovime avada Farcasteri kaudu
-      await sdk.actions.openUrl(targetUrl);
-    } catch (e) {
-      // Kui ebaõnnestub, proovime tavalist meetodit
-      window.open(targetUrl, "_blank", "noopener,noreferrer");
+  // Universaalne funktsioon linkide avamiseks
+  const handleOpenUrl = useCallback((url: string) => {
+    if (typeof window !== 'undefined') {
+      // Kui oleme Farcasteri sees, kasutame SDK meetodit
+      if (sdk?.actions?.openUrl) {
+        sdk.actions.openUrl(url);
+      } 
+      // Varulahendus: suuname brauseri akna otse ümber
+      else {
+        window.location.href = url;
+      }
     }
-  };
-
-  const handlePerksClick = async () => {
-    const targetUrl = "https://zypto.com/visa-cards/";
-    try {
-      await sdk.actions.openUrl(targetUrl);
-    } catch (e) {
-      window.open(targetUrl, "_blank", "noopener,noreferrer");
-    }
-  };
+  }, []);
 
   if (!isSdkReady) {
-    return <div className="min-h-screen bg-black flex items-center justify-center text-lime-500 font-mono italic">INITIALIZING...</div>;
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <p className="text-lime-500 font-mono animate-pulse uppercase tracking-widest">
+          Initializing Hub...
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -55,17 +55,22 @@ export default function HubPage() {
       <div className="max-w-md w-full text-center mt-4">
         
         {/* LOGO */}
-        <img src="/icon.png" alt="Zypto" className="w-16 h-16 mx-auto mb-6 rounded-xl shadow-lg shadow-cyan-500/20" />
+        <img 
+          src="/icon.png" 
+          alt="Zypto" 
+          className="w-16 h-16 mx-auto mb-6 rounded-xl shadow-lg shadow-cyan-500/20" 
+        />
         
+        {/* PEALKIRJAD */}
         <h1 className="text-3xl font-black mb-2 tracking-tighter text-cyan-400 uppercase leading-none">
           Unlock your $5 Base spending bonus
         </h1>
-        <p className="text-gray-400 mb-6 font-medium text-sm uppercase tracking-wide">
+        <p className="text-gray-400 mb-8 font-medium text-sm uppercase tracking-wide">
           Stop Bridging. Spend USDC/ETH IRL.
         </p>
 
         {/* VERIFITSEERITUD KAART */}
-        <div className="bg-zinc-900/90 border border-zinc-800 p-8 rounded-[2rem] mb-8 relative overflow-hidden ring-2 ring-lime-500/20">
+        <div className="bg-zinc-900/80 border border-zinc-800 p-8 rounded-[2rem] mb-10 relative overflow-hidden ring-1 ring-lime-500/30">
           <div className="absolute top-0 right-0 bg-lime-500 text-black text-[10px] font-black px-4 py-1.5 rounded-bl-xl uppercase">
             On-Chain Verified
           </div>
@@ -81,11 +86,11 @@ export default function HubPage() {
           </p>
         </div>
 
-        {/* NUPUD - KASUTAME OTSEID FUNKTSIOONE */}
+        {/* TEGEVUSNUPUD */}
         <div className="space-y-4">
           <button 
             type="button"
-            onClick={handleClaimClick}
+            onClick={() => handleOpenUrl("https://ref.zypto.com/VMvrJEHIvPb")}
             className="w-full bg-lime-500 hover:bg-lime-400 text-black font-black py-5 rounded-2xl text-xl transition-all active:scale-95 shadow-xl shadow-lime-500/20 uppercase cursor-pointer"
           >
             🚀 Claim $5 Bonus Now
@@ -93,16 +98,17 @@ export default function HubPage() {
 
           <button 
             type="button"
-            onClick={handlePerksClick}
+            onClick={() => handleOpenUrl("https://zypto.com/visa-cards/")}
             className="w-full bg-transparent border-2 border-zinc-800 hover:border-zinc-600 text-white font-black py-4 rounded-2xl text-lg transition-all active:scale-95 uppercase cursor-pointer"
           >
             View Card Perks
           </button>
         </div>
 
-        <div className="mt-10 opacity-30">
+        {/* JALUS */}
+        <div className="mt-12 opacity-30">
           <p className="text-[9px] uppercase tracking-[0.3em]">
-            FID: {context?.user?.fid || '2789157'} • Zypto Hub v1
+            FID: {context?.user?.fid || '2789157'} • Zypto x Base • 2026
           </p>
         </div>
       </div>
