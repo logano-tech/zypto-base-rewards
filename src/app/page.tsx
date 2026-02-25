@@ -1,51 +1,28 @@
 'use client';
 
-import sdk from '@farcaster/miniapp-sdk';
-import { useEffect } from 'react';
-
-export default function Home() {
-  useEffect(() => {
-    sdk.actions.ready();
-  }, []);
-
-  const openDownload = () => {
-    const url = "https://farcaster.xyz/miniapps/SwSge26jJZ6_/zypto-rewards-hub";
-    if (sdk?.actions?.openUrl) {
-      sdk.actions.openUrl(url);
-    } else {
-      window.location.href = url;
-    }
-  };
+export default function LandingPage() {
+  const referralUrl = "https://ref.zypto.com/VMvrJEHIvPb";
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 text-center">
-      <h1 className="text-4xl font-black mb-12 leading-tight uppercase">
-        The All-In-One<br/>Super App for Base<br/>Maxxers
-      </h1>
+      <img src="/images/image_3d855c.jpg" className="w-full max-w-md rounded-2xl mb-8 border border-cyan-500/30" />
       
-      <div className="space-y-8 mb-16 text-left w-full max-w-xs mx-auto">
-        <div className="flex items-center gap-4 text-lg">
-          <span>🔑</span> <p>Non-custodial: Your keys, your crypto</p>
-        </div>
-        <div className="flex items-center gap-4 text-lg">
-          <span>💳</span> <p>Visa Card: Accepted at millions of locations</p>
-        </div>
-        <div className="flex items-center gap-4 text-lg">
-          <span>📍</span> <p>Bill Pay: Utilities & rent in 120+ countries</p>
-        </div>
-      </div>
+      <h1 className="text-4xl font-black mb-4 uppercase italic">Verified!</h1>
+      <p className="text-zinc-400 mb-10 uppercase tracking-widest text-sm">Your rewards are ready to claim</p>
 
       <button 
-        onClick={openDownload}
-        className="w-full max-w-sm bg-gradient-to-r from-cyan-400 to-lime-500 text-black font-black py-6 rounded-3xl text-2xl uppercase shadow-xl"
+        onClick={() => window.location.href = referralUrl}
+        className="w-full max-w-xs bg-lime-500 text-black font-black py-5 rounded-2xl text-2xl uppercase shadow-[0_0_30px_rgba(132,204,22,0.3)]"
       >
-        Download & Get Started
+        🚀 Claim & Download
       </button>
 
-      <p className="mt-12 text-[10px] text-zinc-500 max-w-xs mx-auto uppercase leading-relaxed opacity-50">
-        Join 100,000+ users. I&apos;ve been using Zypto to fund my daily life with Base yields. 
-        It&apos;s the only non-custodial app that actually spends like cash.
-      </p>
+      <button 
+        onClick={() => window.location.href = "https://zypto.com/visa-cards/"}
+        className="mt-4 text-zinc-500 uppercase font-bold text-xs hover:text-white transition-colors"
+      >
+        View Card Perks
+      </button>
     </main>
   );
 }
