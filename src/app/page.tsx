@@ -6,7 +6,6 @@ import sdk from '@farcaster/miniapp-sdk';
 export default function MiniApp() {
   const [step, setStep] = useState(1);
   const referralUrl = "https://ref.zypto.com/VMvrJEHIvPb";
-  const cardsUrl = "https://zypto.com/personal/crypto-cards/";
 
   useEffect(() => {
     sdk.actions.ready();
@@ -23,84 +22,77 @@ export default function MiniApp() {
   };
 
   return (
-    <main style={{ 
-      position: 'fixed', 
-      inset: 0, 
+    <div style={{ 
       backgroundColor: 'black', 
+      minHeight: '100vh', 
       display: 'flex', 
       flexDirection: 'column', 
       alignItems: 'center', 
       justifyContent: 'center', 
-      padding: '20px' 
+      padding: '20px',
+      color: 'white',
+      fontFamily: 'sans-serif'
     }}>
-      <div style={{ width: '100%', maxWidth: '360px', textAlign: 'center' }}>
-        
-        {/* LOGO - Otse määratud laius takistab "hiiglase" efekti */}
-        <div style={{ marginBottom: '30px' }}>
-          <img 
-            src="/icon.png" 
-            alt="Zypto" 
-            style={{ width: '80px', height: '80px', borderRadius: '16px', objectFit: 'contain' }} 
-          />
-        </div>
+      {/* LOGO PIIRANG - See on nüüd lukustatud 80px peale */}
+      <img 
+        src="/icon.png" 
+        alt="Logo" 
+        style={{ 
+          width: '80px', 
+          height: '80px', 
+          borderRadius: '16px', 
+          marginBottom: '20px',
+          objectFit: 'contain' 
+        }} 
+      />
 
-        {/* SISU RAAM */}
-        <div style={{ 
-          backgroundColor: 'rgba(39, 39, 42, 0.3)', 
-          border: '1px solid rgba(255, 255, 255, 0.1)', 
-          borderRadius: '32px', 
-          padding: '24px' 
-        }}>
-          
-          {step === 1 && (
-            <div className="animate-in fade-in duration-500">
-              <img src="/images/zypto-base-hook.png" style={{ width: '100%', borderRadius: '24px' }} />
-              <h1 style={{ fontSize: '24px', fontWeight: '900', marginTop: '20px', textTransform: 'uppercase' }}>
-                Verify <span style={{ color: '#84cc16' }}>Wallet</span>
-              </h1>
-              <button 
-                onClick={() => setStep(2)}
-                style={{ width: '100%', padding: '16px', backgroundColor: 'white', color: 'black', borderRadius: '12px', fontWeight: 'bold', marginTop: '20px', border: 'none', cursor: 'pointer' }}
-              >
-                Check Eligibility →
-              </button>
-            </div>
-          )}
+      <div style={{ 
+        width: '100%', 
+        maxWidth: '350px', 
+        backgroundColor: '#18181b', 
+        padding: '20px', 
+        borderRadius: '24px', 
+        textAlign: 'center',
+        border: '1px solid #27272a'
+      }}>
+        {step === 1 && (
+          <div>
+            <img src="/images/zypto-base-hook.png" style={{ width: '100%', borderRadius: '16px' }} />
+            <h1 style={{ fontSize: '20px', margin: '15px 0' }}>Verify Wallet</h1>
+            <button 
+              onClick={() => setStep(2)}
+              style={{ width: '100%', padding: '15px', backgroundColor: 'white', border: 'none', borderRadius: '12px', fontWeight: 'bold' }}
+            >
+              Check Eligibility
+            </button>
+          </div>
+        )}
 
-          {step === 2 && (
-            <div className="animate-in zoom-in duration-500">
-              <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '24px' }} />
-              <h2 style={{ fontSize: '32px', color: '#84cc16', fontWeight: '900', marginTop: '20px' }}>VERIFIED!</h2>
-              <button 
-                onClick={() => setStep(3)}
-                style={{ width: '100%', padding: '16px', backgroundColor: '#84cc16', color: 'black', borderRadius: '12px', fontWeight: 'bold', marginTop: '20px', border: 'none' }}
-              >
-                View Rewards
-              </button>
-            </div>
-          )}
+        {step === 2 && (
+          <div>
+            <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '16px' }} />
+            <h1 style={{ color: '#84cc16', margin: '15px 0' }}>Verified!</h1>
+            <button 
+              onClick={() => setStep(3)}
+              style={{ width: '100%', padding: '15px', backgroundColor: '#84cc16', border: 'none', borderRadius: '12px', fontWeight: 'bold' }}
+            >
+              See Rewards
+            </button>
+          </div>
+        )}
 
-          {step === 3 && (
-            <div className="animate-in slide-in-from-right duration-500">
-              <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '24px' }} />
-              <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <button 
-                  onClick={() => handleLink(referralUrl)}
-                  style={{ width: '100%', padding: '16px', background: 'linear-gradient(to right, #06b6d4, #84cc16)', color: 'black', borderRadius: '12px', fontWeight: 'bold', border: 'none' }}
-                >
-                  🚀 Claim Now
-                </button>
-                <button 
-                  onClick={() => handleLink(cardsUrl)}
-                  style={{ width: '100%', padding: '12px', backgroundColor: 'transparent', color: 'white', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.2)' }}
-                >
-                  View Card Perks
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
+        {step === 3 && (
+          <div>
+            <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '16px' }} />
+            <button 
+              onClick={() => handleLink(referralUrl)}
+              style={{ width: '100%', padding: '15px', marginTop: '15px', background: 'linear-gradient(to right, #06b6d4, #84cc16)', border: 'none', borderRadius: '12px', fontWeight: 'bold' }}
+            >
+              Claim Bonus Now
+            </button>
+          </div>
+        )}
       </div>
-    </main>
+    </div>
   );
 }
