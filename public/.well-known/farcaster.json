@@ -12,12 +12,22 @@
     "imageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "buttonTitle": "Check Eligibility",
     "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-    "splashBackgroundColor": "#000000",
+    "splashBackgroundColor": "#050505",
     "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
-    "subtitle": "Unlock Five USD Base Rewards",
-    "description": "The ultimate rewards hub for Base Maxxers. Verify your wallet to unlock your ZYP bonus and access your non custodial Visa card.",
+    "subtitle": "Unlock $5 Base Spending Bonus",
+    "description": "The ultimate rewards hub for Base Maxxers. Verify your wallet to unlock your $5 ZYP bonus and access your non-custodial Visa card.",
     "tagline": "Spend USDC and ETH IRL",
     "primaryCategory": "finance",
-    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"
+    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+    "screenshotUrls": [
+      "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+      "https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png",
+      "https://zypto-base-rewards.vercel.app/images/zypto-base-perks.png"
+    ],
+    "tags": ["rewards", "base", "visa", "crypto", "finance"],
+    "ogTitle": "Zypto Rewards Hub - Unlock $5 Bonus",
+    "ogDescription": "Get $5 ZYP bonus and spend your Base yields IRL with Zypto's non-custodial Visa card.",
+    "ogImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+    "castShareUrl": "https://warpcast.com/~/add-cast?text=I%20just%20verified%20my%20Base%20wallet%20on%20Zypto%20Rewards%20Hub!%20Check%20your%20eligibility%20here:&embeds[]=https://zypto-base-rewards.vercel.app/"
   }
 }
