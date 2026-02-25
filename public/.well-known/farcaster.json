@@ -7,17 +7,17 @@
   "frame": {
     "version": "1",
     "name": "Zypto Rewards Hub",
-    "iconUrl": "https://zypto-base-rewards.vercel.app/icon.png",
+    "iconUrl": "https://zypto-base-rewards.vercel.app/images/icon.png",
     "homeUrl": "https://zypto-base-rewards.vercel.app/",
-    "imageUrl": "https://zypto-base-rewards.vercel.app/images/image_3d8868.jpg",
+    "imageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "buttonTitle": "Check Eligibility",
-    "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/image_3d8868.jpg",
+    "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "splashBackgroundColor": "#000000",
     "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
     "subtitle": "Unlock Five USD Base Rewards",
     "description": "The ultimate rewards hub for Base Maxxers. Verify your wallet to unlock your ZYP bonus and access your non custodial Visa card.",
     "tagline": "Spend USDC and ETH IRL",
     "primaryCategory": "finance",
-    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/image_3d8868.jpg"
+    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"
   }
 }
