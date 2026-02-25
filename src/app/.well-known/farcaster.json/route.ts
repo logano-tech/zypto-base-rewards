@@ -18,17 +18,23 @@ export async function GET() {
       splashBackgroundColor: "#000000",
       webhookUrl: "https://zyplink-miniapp.vercel.app/api/webhook",
       
-      // Need väljad täidavad portaalis puuduolevad read:
-      subtitle: "Unlock $5 Base Rewards",
-      description: "The ultimate rewards hub for Base Maxxers. Verify your wallet to unlock a $5 ZYP bonus and access your non-custodial Visa card.",
+      // Turundusinfo ilma keelatud sümboliteta (@, #, $, /, \)
+      subtitle: "Unlock Five USD Base Rewards",
+      description: "The ultimate rewards hub for Base Maxxers. Verify your wallet to unlock your ZYP bonus and access your non custodial Visa card.",
+      tagline: "Spend USDC and ETH IRL", // Max 30 tähemärki
+      
+      // Kategooriad ja sotsiaalmeedia seaded
+      primaryCategory: "finance",
+      tags: ["zypto", "base", "rewards", "visa", "fintech"],
+      heroImageUrl: "https://zyplink-miniapp.vercel.app/images/zypto-base-hook.png",
+      
+      // Ekraanipildid (screenshots)
       screenshotUrls: [
         "https://zyplink-miniapp.vercel.app/images/zypto-base-verified.png",
         "https://zyplink-miniapp.vercel.app/images/zypto-base-perks.png"
       ],
-      primaryCategory: "finance",
-      tags: ["zypto", "base", "rewards", "visa", "fintech"],
-      heroImageUrl: "https://zyplink-miniapp.vercel.app/images/zypto-base-hook.png",
-      tagline: "Stop Bridging. Spend USDC/ETH IRL.",
+      
+      // Open Graph sotsiaalseks jagamiseks
       ogTitle: "Zypto Is Based",
       ogDescription: "Verify your wallet and start spending your Base yields IRL",
       ogImageUrl: "https://zyplink-miniapp.vercel.app/images/zypto-base-verified.png"
