@@ -2,10 +2,10 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Zypto Rewards Hub',
-  description: 'Unlock your $5 Base spending bonus',
+  description: 'Unlock your Five USD Base spending bonus',
   openGraph: {
     title: 'Zypto Rewards Hub',
-    description: 'Unlock your $5 Base spending bonus',
+    description: 'Unlock your Five USD Base spending bonus',
     images: ['https://zyplink-miniapp.vercel.app/images/zypto-base-hook.png'],
   },
   other: {
@@ -22,5 +22,9 @@ export default function HubLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <section style={{ backgroundColor: 'black', minHeight: '100vh' }}>
+      {children}
+    </section>
+  );
 }
