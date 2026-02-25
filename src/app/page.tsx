@@ -23,112 +23,106 @@ export default function MiniApp() {
   };
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white flex flex-col items-center p-5 text-center justify-center font-sans">
-      <div className="max-w-md w-full space-y-6">
+    <main className="fixed inset-0 bg-[#050505] text-white flex flex-col items-center justify-center p-6 overflow-hidden">
+      <div className="w-full max-w-md flex flex-col items-center gap-6 animate-in fade-in duration-700">
         
-        {/* LOGO - Piirame suurust ja lisame marginaali, et see ei veniks üle ekraani */}
-        <div className="flex justify-center mb-4 animate-in fade-in zoom-in duration-700">
+        {/* LOGO - See on nüüd väike ja kontrollitud */}
+        <div className="w-16 h-16 flex-shrink-0">
           <img 
             src="/icon.png" 
             alt="Zypto" 
-            className="w-16 h-16 rounded-xl shadow-lg shadow-lime-500/10 object-contain" 
+            className="w-full h-full rounded-2xl shadow-lg shadow-lime-500/10 object-contain" 
           />
         </div>
 
-        {/* SAMM 1: ELIGIBILITY */}
-        {step === 1 && (
-          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-lime-500 rounded-[2rem] blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
+        {/* SISU KONTEINER */}
+        <div className="w-full bg-zinc-900/20 border border-white/5 rounded-[2.5rem] p-4 backdrop-blur-sm">
+          
+          {/* SAMM 1: ELIGIBILITY */}
+          {step === 1 && (
+            <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500">
               <img 
                 src="/images/zypto-base-hook.png" 
                 alt="Verify" 
-                className="relative w-full rounded-[1.5rem] border border-white/5 shadow-2xl" 
+                className="w-full rounded-[1.8rem] border border-white/5" 
               />
+              <div className="space-y-2">
+                <h1 className="text-3xl font-black tracking-tighter uppercase italic leading-none">
+                  Verify Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-lime-400">Wallet</span>
+                </h1>
+                <p className="text-zinc-500 uppercase text-[9px] tracking-[0.3em] font-bold">
+                  Unlock exclusive Zypto rewards on Base
+                </p>
+              </div>
+              <button 
+                onClick={() => setStep(2)}
+                className="w-full py-5 bg-white text-black font-black rounded-2xl text-lg uppercase active:scale-95 transition-all shadow-xl"
+              >
+                Check Eligibility →
+              </button>
             </div>
-            <div className="space-y-2">
-              <h1 className="text-3xl font-black tracking-tighter uppercase italic leading-none">
-                Verify Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-lime-400">Wallet</span>
-              </h1>
-              <p className="text-zinc-500 uppercase text-[9px] tracking-[0.3em] font-bold">
-                Unlock exclusive Zypto rewards on Base
-              </p>
-            </div>
-            <button 
-              onClick={() => setStep(2)}
-              className="w-full py-5 bg-white text-black font-black rounded-2xl text-lg uppercase transition-transform active:scale-95 shadow-xl"
-            >
-              Check Eligibility →
-            </button>
-          </div>
-        )}
+          )}
 
-        {/* SAMM 2: VERIFIED */}
-        {step === 2 && (
-          <div className="space-y-6 animate-in fade-in zoom-in duration-500">
-            <div className="relative">
-               <div className="absolute -inset-8 bg-lime-500/5 blur-3xl rounded-full"></div>
-               <img 
+          {/* SAMM 2: VERIFIED */}
+          {step === 2 && (
+            <div className="space-y-6 animate-in zoom-in duration-500">
+              <img 
                 src="/images/zypto-base-verified.png" 
                 alt="Verified" 
-                className="relative w-full rounded-[1.5rem] border border-lime-500/20 shadow-2xl shadow-lime-500/5" 
+                className="w-full rounded-[1.8rem] border border-lime-500/20" 
               />
-            </div>
-            <div className="space-y-1">
-              <h2 className="text-lime-500 text-5xl font-black italic tracking-tighter uppercase leading-none">
-                Verified!
-              </h2>
-              <p className="text-zinc-400 uppercase text-[9px] tracking-widest font-bold">
-                Your rewards are ready to claim
-              </p>
-            </div>
-            <button 
-              onClick={() => setStep(3)}
-              className="w-full bg-lime-500 text-black font-black py-5 rounded-2xl text-lg uppercase shadow-lg shadow-lime-500/20 active:scale-95 transition-all"
-            >
-              View My Rewards
-            </button>
-          </div>
-        )}
-
-        {/* SAMM 3: PERKS */}
-        {step === 3 && (
-          <div className="space-y-6 animate-in slide-in-from-bottom-8 duration-500">
-            <img 
-              src="/images/zypto-base-perks.png" 
-              alt="Perks" 
-              className="w-full rounded-[1.5rem] border border-cyan-500/10" 
-            />
-            <div className="grid gap-3">
+              <div className="space-y-1">
+                <h2 className="text-lime-500 text-5xl font-black italic tracking-tighter uppercase leading-none">
+                  Verified!
+                </h2>
+                <p className="text-zinc-400 uppercase text-[9px] tracking-widest font-bold">
+                  Your rewards are ready
+                </p>
+              </div>
               <button 
-                onClick={() => handleLink(referralUrl)}
-                className="group w-full bg-gradient-to-r from-cyan-500 to-lime-500 p-[1.5px] rounded-2xl transition-transform active:scale-95 shadow-xl shadow-lime-500/10"
+                onClick={() => setStep(3)}
+                className="w-full bg-lime-500 text-black font-black py-5 rounded-2xl text-lg uppercase shadow-lg shadow-lime-500/20 active:scale-95 transition-all"
               >
-                <div className="bg-black group-hover:bg-transparent transition-colors rounded-[calc(1rem-1.5px)] py-4 px-4 flex items-center justify-center">
-                   <span className="text-white group-hover:text-black font-black text-lg uppercase tracking-tight">
+                View My Rewards
+              </button>
+            </div>
+          )}
+
+          {/* SAMM 3: PERKS */}
+          {step === 3 && (
+            <div className="space-y-6 animate-in slide-in-from-right-4 duration-500">
+              <img 
+                src="/images/zypto-base-perks.png" 
+                alt="Perks" 
+                className="w-full rounded-[1.8rem] border border-cyan-500/10" 
+              />
+              <div className="grid gap-3 pt-2">
+                <button 
+                  onClick={() => handleLink(referralUrl)}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-lime-500 p-[1px] rounded-2xl active:scale-95 transition-all"
+                >
+                  <div className="bg-black hover:bg-transparent transition-colors rounded-[calc(1rem-1px)] py-4 font-black text-lg uppercase">
                     🚀 Claim Rewards Now
-                   </span>
-                </div>
-              </button>
-              <button 
-                onClick={() => handleLink(cardsUrl)}
-                className="w-full bg-zinc-900/40 backdrop-blur-md border border-white/5 text-white font-bold py-4 rounded-2xl text-base uppercase active:scale-95 transition-all"
-              >
-                View Card Perks
-              </button>
-              <button 
-                onClick={() => setStep(1)} 
-                className="text-zinc-600 text-[9px] uppercase font-bold tracking-[0.2em] pt-4 hover:text-zinc-400"
-              >
-                ↺ Start Over
-              </button>
+                  </div>
+                </button>
+                <button 
+                  onClick={() => handleLink(cardsUrl)}
+                  className="w-full bg-white/5 border border-white/10 text-white font-bold py-4 rounded-2xl text-base uppercase"
+                >
+                  View Card Perks
+                </button>
+              </div>
             </div>
-          </div>
-        )}
-
-        <div className="pt-8 opacity-10 text-[8px] uppercase tracking-[0.4em] font-mono">
-           Zypto Rewards Hub • 2026
+          )}
         </div>
+
+        {/* JALUS */}
+        <button 
+          onClick={() => setStep(1)} 
+          className="text-zinc-600 text-[10px] uppercase font-bold tracking-widest hover:text-zinc-400 transition-colors"
+        >
+          ↺ Start Over
+        </button>
       </div>
     </main>
   );
