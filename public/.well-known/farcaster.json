@@ -11,6 +11,14 @@
     "homeUrl": "https://zypto-base-rewards.vercel.app/",
     "imageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "buttonTitle": "Check",
+    "button": {
+      "title": "Check",
+      "action": {
+        "type": "launch_app",
+        "name": "Zypto Rewards",
+        "url": "https://zypto-base-rewards.vercel.app/"
+      }
+    },
     "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "splashBackgroundColor": "#050505",
     "subtitle": "Claim Rewards",
