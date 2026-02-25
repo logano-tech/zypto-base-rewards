@@ -1,21 +1,23 @@
 import { Metadata } from 'next';
 
+// Loome Embed objekti vastavalt Farcasteri nõuetele
+const miniAppEmbed = JSON.stringify({
+  version: "1",
+  type: "miniapp",
+  name: "Zypto Rewards",
+  iconUrl: "https://zypto-base-rewards.vercel.app/icon.png",
+  imageUrl: "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+  homeUrl: "https://zypto-base-rewards.vercel.app/",
+  buttonTitle: "Check"
+});
+
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
   description: 'Verify and claim rewards',
-  openGraph: {
-    title: 'Zypto Rewards',
-    description: 'Verify and claim rewards',
-    images: ['https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png'],
-  },
   other: {
-    'fc:frame': 'vNext',
-    'fc:frame:image': 'https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png',
-    'fc:frame:button:1': 'Check', // Täpne vastavus manifestiga
-    'fc:frame:post_url': 'https://zypto-base-rewards.vercel.app/api/frame',
-    'farcaster:app:name': 'Zypto Rewards',
-    'farcaster:app:icon': 'https://zypto-base-rewards.vercel.app/icon.png',
-    'farcaster:app:url': 'https://zypto-base-rewards.vercel.app/',
+    // See on see kriitiline "konks" – JSON peab olema meta-tagi sees tekstina
+    'fc:miniapp': miniAppEmbed,
+    'fc:frame': miniAppEmbed, // Tagasiühilduvuse jaoks
   },
 };
 
