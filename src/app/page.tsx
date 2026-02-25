@@ -33,20 +33,22 @@ export default function MiniApp() {
       color: 'white',
       fontFamily: 'sans-serif'
     }}>
-      {/* LOGO PIIRANG - See on nüüd lukustatud 80px peale */}
-      <img 
-        src="/icon.png" 
-        alt="Logo" 
-        style={{ 
-          width: '80px', 
-          height: '80px', 
-          borderRadius: '16px', 
-          marginBottom: '20px',
-          objectFit: 'contain' 
-        }} 
-      />
-
-      <div style={{ 
+      {/* LOGO - Brutaalne piirang */}
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '20px' }}>
+  <img 
+    src="/icon.png" 
+    alt="Logo" 
+    style={{ 
+      width: '80px', 
+      height: '80px', 
+      minWidth: '80px', 
+      maxWidth: '80px', 
+      borderRadius: '16px',
+      objectFit: 'contain'
+    }} 
+  />
+</div>
+        <div style={{ 
         width: '100%', 
         maxWidth: '350px', 
         backgroundColor: '#18181b', 
