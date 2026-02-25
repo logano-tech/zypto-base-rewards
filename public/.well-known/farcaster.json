@@ -14,10 +14,20 @@
     "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "splashBackgroundColor": "#050505",
     "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
-    "subtitle": "Unlock rewards",
-    "description": "Verify your wallet to unlock rewards and access your Visa card.",
+    "subtitle": "Unlock Base Rewards",
+    "description": "Verify your wallet to unlock rewards and access your non custodial Visa card.",
     "tagline": "Spend crypto in real life",
     "primaryCategory": "finance",
-    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"
+    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+    "screenshotUrls": [
+      "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+      "https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png",
+      "https://zypto-base-rewards.vercel.app/images/zypto-base-perks.png"
+    ],
+    "tags": ["rewards", "base", "visa", "crypto", "finance"],
+    "ogTitle": "Zypto Rewards Hub",
+    "ogDescription": "Get rewards and spend crypto IRL with Zypto Visa card.",
+    "ogImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+    "castShareUrl": "https://zypto-base-rewards.vercel.app/"
   }
 }
