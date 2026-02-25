@@ -23,92 +23,76 @@ export default function MiniApp() {
   };
 
   return (
-    <main className="fixed inset-0 bg-black text-white flex flex-col items-center justify-center p-4">
-      {/* See div on sinu äpi "raam" */}
-      <div className="w-full max-w-[360px] flex flex-col items-center animate-in fade-in duration-700">
+    <main style={{ 
+      position: 'fixed', 
+      inset: 0, 
+      backgroundColor: 'black', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      padding: '20px' 
+    }}>
+      <div style={{ width: '100%', maxWidth: '360px', textAlign: 'center' }}>
         
-        {/* LOGO - Piiratud w-20 (80px) peale, et ta ei oleks hiiglaslik */}
-        <div className="mb-8">
+        {/* LOGO - Otse määratud laius takistab "hiiglase" efekti */}
+        <div style={{ marginBottom: '30px' }}>
           <img 
             src="/icon.png" 
             alt="Zypto" 
-            className="w-20 h-20 rounded-2xl shadow-xl shadow-lime-500/10 object-contain" 
+            style={{ width: '80px', height: '80px', borderRadius: '16px', objectFit: 'contain' }} 
           />
         </div>
 
-        {/* SISU KONTEINER */}
-        <div className="w-full bg-zinc-900/30 border border-white/5 rounded-[2.5rem] p-5 backdrop-blur-md">
+        {/* SISU RAAM */}
+        <div style={{ 
+          backgroundColor: 'rgba(39, 39, 42, 0.3)', 
+          border: '1px solid rgba(255, 255, 255, 0.1)', 
+          borderRadius: '32px', 
+          padding: '24px' 
+        }}>
           
-          {/* SAMM 1: START */}
           {step === 1 && (
-            <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500">
-              <img 
-                src="/images/zypto-base-hook.png" 
-                alt="Verify" 
-                className="w-full rounded-3xl border border-white/5" 
-              />
-              <div className="text-center space-y-2">
-                <h1 className="text-3xl font-black italic uppercase tracking-tighter leading-none">
-                  Verify Your <span className="text-lime-500">Wallet</span>
-                </h1>
-                <p className="text-zinc-500 text-[10px] uppercase tracking-widest font-bold">
-                  Unlock rewards on Base
-                </p>
-              </div>
+            <div className="animate-in fade-in duration-500">
+              <img src="/images/zypto-base-hook.png" style={{ width: '100%', borderRadius: '24px' }} />
+              <h1 style={{ fontSize: '24px', fontWeight: '900', marginTop: '20px', textTransform: 'uppercase' }}>
+                Verify <span style={{ color: '#84cc16' }}>Wallet</span>
+              </h1>
               <button 
                 onClick={() => setStep(2)}
-                className="w-full py-5 bg-white text-black font-black rounded-2xl text-lg uppercase active:scale-95 transition-all"
+                style={{ width: '100%', padding: '16px', backgroundColor: 'white', color: 'black', borderRadius: '12px', fontWeight: 'bold', marginTop: '20px', border: 'none', cursor: 'pointer' }}
               >
                 Check Eligibility →
               </button>
             </div>
           )}
 
-          {/* SAMM 2: VERIFIED */}
           {step === 2 && (
-            <div className="space-y-6 animate-in zoom-in duration-500">
-              <img 
-                src="/images/zypto-base-verified.png" 
-                alt="Verified" 
-                className="w-full rounded-3xl border border-lime-500/20" 
-              />
-              <div className="text-center space-y-1">
-                <h2 className="text-lime-500 text-5xl font-black italic uppercase tracking-tighter">
-                  Verified!
-                </h2>
-                <p className="text-zinc-400 text-[10px] uppercase font-bold tracking-widest">
-                  Your rewards are ready
-                </p>
-              </div>
+            <div className="animate-in zoom-in duration-500">
+              <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '24px' }} />
+              <h2 style={{ fontSize: '32px', color: '#84cc16', fontWeight: '900', marginTop: '20px' }}>VERIFIED!</h2>
               <button 
                 onClick={() => setStep(3)}
-                className="w-full bg-lime-500 text-black font-black py-5 rounded-2xl text-lg uppercase shadow-lg shadow-lime-500/20 active:scale-95 transition-all"
+                style={{ width: '100%', padding: '16px', backgroundColor: '#84cc16', color: 'black', borderRadius: '12px', fontWeight: 'bold', marginTop: '20px', border: 'none' }}
               >
-                View My Rewards
+                View Rewards
               </button>
             </div>
           )}
 
-          {/* SAMM 3: PERKS */}
           {step === 3 && (
-            <div className="space-y-6 animate-in slide-in-from-right-4 duration-500">
-              <img 
-                src="/images/zypto-base-perks.png" 
-                alt="Perks" 
-                className="w-full rounded-3xl border border-cyan-500/10" 
-              />
-              <div className="grid gap-3 pt-2">
+            <div className="animate-in slide-in-from-right duration-500">
+              <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '24px' }} />
+              <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <button 
                   onClick={() => handleLink(referralUrl)}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-lime-500 p-[1.5px] rounded-2xl active:scale-95 transition-all"
+                  style={{ width: '100%', padding: '16px', background: 'linear-gradient(to right, #06b6d4, #84cc16)', color: 'black', borderRadius: '12px', fontWeight: 'bold', border: 'none' }}
                 >
-                  <div className="bg-black hover:bg-transparent transition-colors rounded-[calc(1rem-1.5px)] py-4 flex items-center justify-center">
-                    <span className="text-white font-black text-lg uppercase">🚀 Claim Now</span>
-                  </div>
+                  🚀 Claim Now
                 </button>
                 <button 
                   onClick={() => handleLink(cardsUrl)}
-                  className="w-full bg-white/5 border border-white/10 text-white font-bold py-4 rounded-2xl text-sm uppercase"
+                  style={{ width: '100%', padding: '12px', backgroundColor: 'transparent', color: 'white', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.2)' }}
                 >
                   View Card Perks
                 </button>
@@ -116,14 +100,6 @@ export default function MiniApp() {
             </div>
           )}
         </div>
-
-        {/* JALUS */}
-        <button 
-          onClick={() => setStep(1)}
-          className="mt-8 text-zinc-600 text-[10px] uppercase font-bold tracking-[0.3em] hover:text-zinc-400 transition-colors"
-        >
-          ↺ Start Over
-        </button>
       </div>
     </main>
   );
