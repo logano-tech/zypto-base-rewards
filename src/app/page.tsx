@@ -26,9 +26,13 @@ export default function MiniApp() {
     <main className="min-h-screen bg-[#050505] text-white flex flex-col items-center p-5 text-center justify-center font-sans selection:bg-lime-500/30">
       <div className="max-w-md w-full space-y-8">
         
-        {/* LOGO ÜLAL (alati nähtav) */}
+        {/* LOGO ÜLAL - Fikseeritud suurus, et vältida kujunduse paigast minekut */}
         <div className="mb-2 animate-in fade-in zoom-in duration-700">
-          <img src="/icon.png" alt="Zypto" className="w-12 h-12 mx-auto rounded-xl shadow-lg shadow-lime-500/10" />
+          <img 
+            src="/icon.png" 
+            alt="Zypto" 
+            className="w-16 h-16 mx-auto rounded-xl shadow-lg shadow-lime-500/10 object-contain" 
+          />
         </div>
 
         {/* SAMM 1: CHECK ELIGIBILITY */}
@@ -105,37 +109,6 @@ export default function MiniApp() {
             <div className="grid gap-4">
               <button 
                 onClick={() => handleLink(referralUrl)}
-                className="group w-full bg-gradient-to-r from-cyan-500 to-lime-500 p-[2px] rounded-2xl transition-transform active:scale-95"
+                className="group w-full bg-gradient-to-r from-cyan-500 to-lime-500 p-[2px] rounded-2xl transition-transform active:scale-95 shadow-xl shadow-lime-500/20"
               >
-                <div className="bg-black group-hover:bg-transparent transition-colors rounded-2xl py-5 px-4 h-full w-full flex items-center justify-center">
-                   <span className="text-white group-hover:text-black font-black text-xl uppercase flex items-center gap-2">
-                    🚀 Claim $5 Bonus Now
-                   </span>
-                </div>
-              </button>
-
-              <button 
-                onClick={() => handleLink(cardsUrl)}
-                className="w-full bg-zinc-900/50 backdrop-blur-md border border-white/10 text-white font-bold py-4 rounded-2xl text-lg uppercase hover:bg-zinc-800 transition-all active:scale-95"
-              >
-                View Card Perks
-              </button>
-
-              <button 
-                onClick={() => setStep(1)} 
-                className="text-zinc-600 text-[10px] uppercase font-bold tracking-[0.2em] hover:text-zinc-400 transition-colors pt-2"
-              >
-                ↺ Back to start
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* JALUS (FID info) */}
-        <div className="pt-8 opacity-20 text-[9px] uppercase tracking-[0.4em] font-mono">
-           Zypto Rewards Hub • 2026
-        </div>
-      </div>
-    </main>
-  );
-}
+                <div
