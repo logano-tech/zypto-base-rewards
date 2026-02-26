@@ -1,4 +1,9 @@
 {
+  "accountAssociation": {
+    "header": "eyJmaWQiOjI3ODkxNTcsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhFOTFmMjA0RGEwMUE5ZTVFRDY1NDlhZjI5NTBBMDJDQzc0OUJFYTg3In0",
+    "payload": "eyJkb21haW4iOiJ6eXB0by1iYXNlLXJld2FyZHMudmVyY2VsLmFwcCJ9",
+    "signature": "qoPazIaR3VZwPeVBQgjbhtczXUtz5DIEB2V16gLegZBwekKxaUTL6MZGe74r5ArH3LaxTI8Bc8FXszbMyuRzfBw="
+  },
   "frame": {
     "version": "1",
     "name": "Zypto Rewards",
@@ -12,36 +17,6 @@
         "name": "Zypto Rewards",
         "url": "https://zypto-base-rewards.vercel.app"
       }
-    },
-    "aspectRatio": "3:2",
-    "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-    "splashBackgroundColor": "#050505",
-    "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
-    "subtitle": "Verify & Claim",
-    "description": "Securely verify your wallet to unlock exclusive Zypto rewards on Base.",
-    "screenshotUrls": [
-      "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-      "https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png",
-      "https://zypto-base-rewards.vercel.app/images/zypto-base-perks.png"
-    ],
-    "primaryCategory": "finance",
-    "tags": [
-      "rewards",
-      "base",
-      "finance",
-      "crypto",
-      "visa"
-    ],
-    "heroImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-    "tagline": "Verify. Claim. Spend.",
-    "ogTitle": "Zypto Rewards Hub",
-    "ogDescription": "Fast & Secure Wallet Verification for Zypto Perks.",
-    "ogImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-    "castShareUrl": "https://zypto-base-rewards.vercel.app"
-  },
-  "accountAssociation": {
-    "header": "eyJmaWQiOjI3ODkxNTcsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhFOTFmMjA0RGEwMUE5ZTVFRDY1NDlhZjI5NTBBMDJDQzc0OUJFYTg3In0",
-    "payload": "eyJkb21haW4iOiJ6eXB0by1iYXNlLXJld2FyZHMudmVyY2VsLmFwcCJ9",
-    "signature": "qoPazIaR3VZwPeVBQgjbhtczXUtz5DIEB2V16gLegZBwekKxaUTL6MZGe74r5ArH3LaxTI8Bc8FXszbMyuRzfBw="
+    }
   }
 }
