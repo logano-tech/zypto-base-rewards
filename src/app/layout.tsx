@@ -36,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Piltide eellaadimine kiiremaks vahetuseks */}
         <link rel="preload" href="https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png" as="image" />
         <link rel="preload" href="https://zypto-base-perks.png" as="image" />
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
       </head>
       <body style={{ backgroundColor: '#050505', margin: 0, padding: 0 }}>
         {children}
