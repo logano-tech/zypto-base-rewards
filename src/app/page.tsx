@@ -14,7 +14,7 @@ export default function MiniApp() {
 
   const handleCheckRewards = () => {
     setIsLoading(true);
-    // Tekitame väikese "mõttepausi" (1.5 sekundit), et luua ootusärevust
+    // "Mõttepaus" ootusärevuse tekitamiseks
     setTimeout(() => {
       setIsLoading(false);
       setStep(2);
@@ -42,38 +42,42 @@ export default function MiniApp() {
       flexDirection: 'column', 
       alignItems: 'center', 
       justifyContent: 'center', 
-      padding: '20px',
+      padding: '12px', // Vähendatud padding, et ekraanil rohkem ruumi oleks
       color: 'white',
       overflow: 'hidden'
     }}>
       
-      <div style={{ marginBottom: '24px', filter: 'drop-shadow(0 0 10px rgba(0,255,136,0.2))' }}>
+      {/* LOGO - Kompaktne, et mitte sisu alla suruda */}
+      <div style={{ marginBottom: '16px', filter: 'drop-shadow(0 0 8px rgba(0,255,136,0.2))' }}>
         <img 
           src="/icon.png" 
           alt="Zypto Logo" 
-          style={{ width: '80px', height: '80px', borderRadius: '20px', objectFit: 'contain' }} 
+          style={{ width: '64px', height: '64px', borderRadius: '16px', objectFit: 'contain' }} 
         />
       </div>
 
+      {/* PEAMINE KONTEINER - Safe Area parandustega */}
       <div style={{ 
         width: '100%', 
-        maxWidth: '340px', 
+        maxWidth: '300px', // KITSAM (oli 340px), et mahuks Warpcasti raamidesse
         backgroundColor: '#111113', 
-        padding: '24px', 
-        borderRadius: '32px', 
+        padding: '16px', 
+        borderRadius: '28px', 
         textAlign: 'center',
         border: '1px solid rgba(255,255,255,0.08)',
-        boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)'
+        boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
+        margin: '0 auto'
       }}>
         
+        {/* STEP 1: HOOK */}
         {step === 1 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
             <img 
               src="/images/zypto-base-hook.png" 
-              style={{ width: '100%', borderRadius: '20px', marginBottom: '8px' }} 
+              style={{ width: '100%', borderRadius: '18px', marginBottom: '4px' }} 
               alt="Hook"
             />
-            <h1 style={{ fontSize: '22px', margin: '20px 0', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            <h1 style={{ fontSize: '18px', margin: '12px 0', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Verify Wallet
             </h1>
             <button 
@@ -81,51 +85,46 @@ export default function MiniApp() {
               disabled={isLoading}
               style={{ 
                 width: '100%', 
-                padding: '16px', 
+                padding: '14px', 
                 backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, 
                 color: isLoading ? '#666' : 'black', 
                 border: 'none', 
-                borderRadius: '14px', 
+                borderRadius: '12px', 
                 fontWeight: '800',
-                fontSize: '18px',
+                fontSize: '16px', // Veidi väiksem font, et mahuks nupule ära
                 cursor: isLoading ? 'default' : 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: isLoading ? 'none' : `0 4px 15px ${zyptoGreen}44`,
-                position: 'relative'
+                transition: 'all 0.2s ease',
+                boxShadow: isLoading ? 'none' : `0 4px 12px ${zyptoGreen}33`
               }}
             >
-              {isLoading ? (
-                <span className="loading-dots">Verifying</span>
-              ) : (
-                "Check Rewards"
-              )}
+              {isLoading ? "Verifying..." : "Check Rewards"}
             </button>
           </div>
         )}
 
+        {/* STEP 2: VERIFIED */}
         {step === 2 && (
-          <div style={{ animation: 'bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)' }}>
+          <div style={{ animation: 'bounceIn 0.6s ease-out' }}>
             <img 
               src="/images/zypto-base-verified.png" 
-              style={{ width: '100%', borderRadius: '20px', marginBottom: '8px' }} 
+              style={{ width: '100%', borderRadius: '18px', marginBottom: '4px' }} 
               alt="Verified"
             />
-            <h1 style={{ color: zyptoGreen, margin: '20px 0', fontSize: '32px', fontWeight: '900', letterSpacing: '1px' }}>
+            <h1 style={{ color: zyptoGreen, margin: '12px 0', fontSize: '24px', fontWeight: '900' }}>
               VERIFIED!
             </h1>
             <button 
               onClick={() => setStep(3)}
               style={{ 
                 width: '100%', 
-                padding: '16px', 
+                padding: '14px', 
                 backgroundColor: zyptoGreen, 
                 color: 'black', 
                 border: 'none', 
-                borderRadius: '14px', 
+                borderRadius: '12px', 
                 fontWeight: '800',
-                fontSize: '18px',
-                cursor: 'pointer',
-                boxShadow: `0 4px 15px ${zyptoGreen}44`
+                fontSize: '16px',
+                cursor: 'pointer'
               }}
             >
               See Rewards
@@ -133,27 +132,27 @@ export default function MiniApp() {
           </div>
         )}
 
+        {/* STEP 3: CLAIM */}
         {step === 3 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
             <img 
               src="/images/zypto-base-perks.png" 
-              style={{ width: '100%', borderRadius: '20px', marginBottom: '8px' }} 
+              style={{ width: '100%', borderRadius: '18px', marginBottom: '4px' }} 
               alt="Perks"
             />
             <button 
               onClick={() => handleLink(referralUrl)}
               style={{ 
                 width: '100%', 
-                padding: '16px', 
-                marginTop: '16px', 
+                padding: '14px', 
+                marginTop: '12px', 
                 background: `linear-gradient(135deg, #06b6d4, ${zyptoGreen})`, 
                 color: 'black', 
                 border: 'none', 
-                borderRadius: '14px', 
+                borderRadius: '12px', 
                 fontWeight: '800',
-                fontSize: '18px',
-                cursor: 'pointer',
-                boxShadow: '0 10px 20px rgba(6,182,212,0.3)'
+                fontSize: '16px',
+                cursor: 'pointer'
               }}
             >
               Claim Rewards
@@ -164,24 +163,13 @@ export default function MiniApp() {
 
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
+          from { opacity: 0; transform: translateY(8px); }
           to { opacity: 1; transform: translateY(0); }
         }
         @keyframes bounceIn {
-          0% { opacity: 0; transform: scale(0.3); }
-          50% { opacity: 0.9; transform: scale(1.1); }
-          80% { transform: scale(0.89); }
+          0% { opacity: 0; transform: scale(0.8); }
+          70% { transform: scale(1.05); }
           100% { opacity: 1; transform: scale(1); }
-        }
-        .loading-dots:after {
-          content: '.';
-          animation: dots 1.5s steps(5, end) infinite;
-        }
-        @keyframes dots {
-          0%, 20% { content: '.'; }
-          40% { content: '..'; }
-          60% { content: '...'; }
-          80%, 100% { content: ''; }
         }
       `}</style>
     </div>
