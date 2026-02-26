@@ -1,27 +1,30 @@
 import type { Metadata } from 'next';
 
-const miniAppEmbed = JSON.stringify({
+const frame = {
   version: "1",
-  type: "miniapp",
-  name: "Zypto Rewards",
-  iconUrl: "https://zypto-base-rewards.vercel.app/icon.png",
   imageUrl: "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-  homeUrl: "https://zypto-base-rewards.vercel.app",
   button: {
-    title: "Check Rewards",
+    title: "Check Rewards", // Max 32 märki - meil on 13, sobib!
     action: {
-      type: "launch_app",
+      type: "launch_frame", // TÄHTIS: Juhend nõuab "launch_frame"
       name: "Zypto Rewards",
-      url: "https://zypto-base-rewards.vercel.app"
+      url: "https://zypto-base-rewards.vercel.app",
+      splashImageUrl: "https://zypto-base-rewards.vercel.app/icon.png",
+      splashBackgroundColor: "#050505"
     }
   }
-});
+};
 
 export const metadata: Metadata = {
-  title: 'Zypto Rewards Hub',
-  description: 'Verify your wallet and unlock exclusive rewards on Base',
+  title: "Zypto Rewards Hub",
+  description: "Verify your wallet and unlock exclusive rewards on Base",
+  openGraph: {
+    title: "Zypto Rewards Hub",
+    description: "Verify your wallet and unlock exclusive rewards on Base",
+    images: ["https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"],
+  },
   other: {
-    'fc:miniapp': miniAppEmbed, // Ainus ja õige tag uute Mini Appide jaoks
+    "fc:miniapp": JSON.stringify(frame), // Ametlik uus tag
   },
 };
 
@@ -31,11 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preload" href="https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png" as="image" />
         <link rel="preload" href="https://zypto-base-rewards.vercel.app/images/zypto-base-perks.png" as="image" />
-        <style dangerouslySetInnerHTML={{ __html: `
-          body { background-color: #050505; margin: 0; padding: 0; }
-        `}} />
       </head>
-      <body>{children}</body>
+      <body style={{ backgroundColor: '#050505', margin: 0, padding: 0 }}>
+        {children}
+      </body>
     </html>
   );
 }
