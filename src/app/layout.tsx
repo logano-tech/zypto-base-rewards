@@ -27,14 +27,12 @@ export const metadata: Metadata = {
     images: ['https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png'],
   },
   other: {
-    // Uus standard
     'fc:miniapp': miniAppEmbed,
-    // Tagasiühilduvuse ja nupu "Action" jaoks
     'fc:frame': miniAppEmbed,
-    'fc:frame:image': 'https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png',
+    // See rida allpool on kriitiline "Action" vea parandamiseks!
     'fc:frame:button:1': 'Check Rewards',
-    'fc:frame:button:1:action': 'post',
-    'fc:frame:post_url': 'https://zypto-base-rewards.vercel.app/api/webhook',
+    'fc:frame:button:1:action': 'post', 
+    'fc:frame:post_url': 'https://zypto-base-rewards.vercel.app/',
   },
 };
 
