@@ -14,7 +14,7 @@ export default function MiniApp() {
 
   const handleCheckRewards = () => {
     setIsLoading(true);
-    // 1.5-sekundiline "mõttepaus" usaldusväärsuse ja ootusärevuse tekitamiseks
+    // 1.5-sekundiline "mõttepaus" usaldusväärsuse tekitamiseks
     setTimeout(() => {
       setIsLoading(false);
       setStep(2);
@@ -23,11 +23,15 @@ export default function MiniApp() {
 
   const handleLink = (url: string) => {
     if (typeof window !== 'undefined') {
+      // 1. Farcasteri SDK katse
       if (sdk?.actions?.openUrl) {
         sdk.actions.openUrl(url);
-      } else {
-        window.open(url, '_blank');
+        return;
       }
+      
+      // 2. Twitteri/Brauseri katse: window.location.href on "lollikindel" 
+      // ja seda ei blokeerita sisebrauserite poolt nagu window.open-i.
+      window.location.href = url;
     }
   };
 
@@ -47,7 +51,7 @@ export default function MiniApp() {
       overflow: 'hidden'
     }}>
       
-      {/* LOGO - Kompaktne ja stiilne */}
+      {/* LOGO */}
       <div style={{ marginBottom: '16px', filter: 'drop-shadow(0 0 8px rgba(0,255,136,0.2))' }}>
         <img 
           src="/icon.png" 
@@ -56,7 +60,7 @@ export default function MiniApp() {
         />
       </div>
 
-      {/* PEAMINE KONTEINER - Kitsas raam (300px), mis mahub igale poole */}
+      {/* PEAMINE KONTEINER */}
       <div style={{ 
         width: '100%', 
         maxWidth: '300px', 
@@ -69,10 +73,10 @@ export default function MiniApp() {
         margin: '0 auto'
       }}>
         
-        {/* STEP 1: HOOK (Lisatud padding pildile, et vältida "katkist" äärt) */}
+        {/* STEP 1: HOOK */}
         {step === 1 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
-            <div style={{ padding: '0 6px' }}> {/* See nihutab pildi servadest eemale */}
+            <div style={{ padding: '0 6px' }}>
               <img 
                 src="/images/zypto-base-hook.png" 
                 style={{ 
@@ -163,7 +167,8 @@ export default function MiniApp() {
                 borderRadius: '12px', 
                 fontWeight: '800',
                 fontSize: '16px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 6px 15px rgba(0,255,136,0.3)'
               }}
             >
               Claim Rewards
