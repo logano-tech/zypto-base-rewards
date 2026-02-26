@@ -4,9 +4,9 @@ const frame = {
   version: "1",
   imageUrl: "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
   button: {
-    title: "Check Rewards", // Max 32 märki - meil on 13, sobib!
+    title: "Check Rewards", 
     action: {
-      type: "launch_frame", // TÄHTIS: Juhend nõuab "launch_frame"
+      type: "launch_frame", 
       name: "Zypto Rewards",
       url: "https://zypto-base-rewards.vercel.app",
       splashImageUrl: "https://zypto-base-rewards.vercel.app/icon.png",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     images: ["https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"],
   },
   other: {
-    "fc:miniapp": JSON.stringify(frame), // Ametlik uus tag
+    "fc:miniapp": JSON.stringify(frame),
   },
 };
 
@@ -32,8 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        {/* Piltide eellaadimine kiiremaks vahetuseks */}
         <link rel="preload" href="https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png" as="image" />
-        <link rel="preload" href="https://zypto-base-rewards.vercel.app/images/zypto-base-perks.png" as="image" />
+        <link rel="preload" href="https://zypto-base-perks.png" as="image" />
       </head>
       <body style={{ backgroundColor: '#050505', margin: 0, padding: 0 }}>
         {children}
