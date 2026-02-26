@@ -47,13 +47,15 @@ export default function MiniApp() {
         padding: '20px 16px', 
         borderRadius: '28px', 
         textAlign: 'center',
-        border: '1px solid rgba(255,255,255,0.08)'
+        border: '1px solid rgba(255,255,255,0.08)',
+        position: 'relative' // Vajalik stabiilsuseks
       }}>
         
+        {/* STEP 1 */}
         {step === 1 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
             <img src="/images/zypto-base-hook.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} />
-            <h1 style={{ fontSize: '18px', margin: '14px 0', fontWeight: '900' }}>Verify Wallet</h1>
+            <h1 style={{ fontSize: '18px', margin: '12px 0', fontWeight: '900' }}>Verify Wallet</h1>
             <button 
               onClick={handleCheckRewards}
               disabled={isLoading}
@@ -67,6 +69,7 @@ export default function MiniApp() {
           </div>
         )}
 
+        {/* STEP 2 */}
         {step === 2 && (
           <div style={{ animation: 'bounceIn 0.6s ease-out' }}>
             <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} />
@@ -80,38 +83,38 @@ export default function MiniApp() {
           </div>
         )}
 
+        {/* STEP 3 - KÕIGE KINDLAM MEETOD */}
         {step === 3 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
             <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '18px', marginBottom: '6px' }} />
             
-            {/* KRIITILINE MUUDATUS: Kasutame puhast HTML linki, mis on maskeeritud nupuks */}
-            <a 
-              href={referralUrl}
-              target="_top"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                // Kui oleme Farcasteris, proovime ikka SDK-d esimesena
-                if (sdk?.actions?.openUrl) {
-                  e.preventDefault();
-                  sdk.actions.openUrl(referralUrl);
-                }
-              }}
-              style={{ 
-                display: 'block',
-                width: '100%', 
-                padding: '16px 0', 
-                marginTop: '12px', 
-                background: `linear-gradient(135deg, #06b6d4, ${zyptoGreen})`, 
-                color: 'black', 
-                textDecoration: 'none',
-                borderRadius: '12px', 
-                fontWeight: '800',
-                fontSize: '16px',
-                boxShadow: '0 6px 15px rgba(0,255,136,0.3)'
-              }}
-            >
-              Claim Rewards
-            </a>
+            {/* Kasutame standardset HTML vormi, mis on Twitteris KÕIGE usaldusväärsem meetod suunamiseks */}
+            <form action={referralUrl} method="get" target="_top">
+               <button 
+                type="submit"
+                onClick={(e) => {
+                  if (sdk?.actions?.openUrl) {
+                    e.preventDefault();
+                    sdk.actions.openUrl(referralUrl);
+                  }
+                }}
+                style={{ 
+                  width: '100%', 
+                  padding: '16px 0', 
+                  marginTop: '12px', 
+                  background: `linear-gradient(135deg, #06b6d4, ${zyptoGreen})`, 
+                  color: 'black', 
+                  border: 'none',
+                  borderRadius: '12px', 
+                  fontWeight: '800',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 15px rgba(0,255,136,0.3)'
+                }}
+              >
+                Claim Rewards
+              </button>
+            </form>
           </div>
         )}
       </div>
