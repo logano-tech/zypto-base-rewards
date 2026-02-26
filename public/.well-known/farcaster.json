@@ -13,7 +13,7 @@
     "button": {
       "title": "Check Rewards",
       "action": {
-        "type": "launch_app",
+        "type": "launch_frame",
         "name": "Zypto Rewards",
         "url": "https://zypto-base-rewards.vercel.app"
       }
