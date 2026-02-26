@@ -9,7 +9,11 @@ export default function MiniApp() {
   const referralUrl = "https://ref.zypto.com/VMvrJEHIvPb";
 
   useEffect(() => {
-    sdk.actions.ready();
+      if (window.Telegram?.WebApp) {
+    window.Telegram.WebApp.expand(); // Teeb äpi kohe suureks
+    window.Telegram.WebApp.ready();
+  }
+  sdk.actions.ready();
   }, []);
 
   const handleCheckRewards = () => {
