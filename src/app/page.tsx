@@ -14,25 +14,10 @@ export default function MiniApp() {
 
   const handleCheckRewards = () => {
     setIsLoading(true);
-    // 1.5-sekundiline "mõttepaus" usaldusväärsuse tekitamiseks
     setTimeout(() => {
       setIsLoading(false);
       setStep(2);
     }, 1500);
-  };
-
-  const handleLink = (url: string) => {
-    if (typeof window !== 'undefined') {
-      // 1. Farcasteri SDK katse
-      if (sdk?.actions?.openUrl) {
-        sdk.actions.openUrl(url);
-        return;
-      }
-      
-      // 2. Twitteri/Brauseri katse: window.location.href on "lollikindel" 
-      // ja seda ei blokeerita sisebrauserite poolt nagu window.open-i.
-      window.location.href = url;
-    }
   };
 
   const zyptoGreen = '#00ff88';
@@ -51,16 +36,10 @@ export default function MiniApp() {
       overflow: 'hidden'
     }}>
       
-      {/* LOGO */}
-      <div style={{ marginBottom: '16px', filter: 'drop-shadow(0 0 8px rgba(0,255,136,0.2))' }}>
-        <img 
-          src="/icon.png" 
-          alt="Zypto Logo" 
-          style={{ width: '60px', height: '60px', borderRadius: '14px', objectFit: 'contain' }} 
-        />
+      <div style={{ marginBottom: '16px' }}>
+        <img src="/icon.png" alt="Logo" style={{ width: '60px', height: '60px', borderRadius: '14px' }} />
       </div>
 
-      {/* PEAMINE KONTEINER */}
       <div style={{ 
         width: '100%', 
         maxWidth: '300px', 
@@ -68,44 +47,19 @@ export default function MiniApp() {
         padding: '20px 16px', 
         borderRadius: '28px', 
         textAlign: 'center',
-        border: '1px solid rgba(255,255,255,0.08)',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
-        margin: '0 auto'
+        border: '1px solid rgba(255,255,255,0.08)'
       }}>
         
-        {/* STEP 1: HOOK */}
         {step === 1 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
-            <div style={{ padding: '0 6px' }}>
-              <img 
-                src="/images/zypto-base-hook.png" 
-                style={{ 
-                  width: '100%', 
-                  borderRadius: '16px', 
-                  marginBottom: '6px',
-                  display: 'block'
-                }} 
-                alt="Hook"
-              />
-            </div>
-            <h1 style={{ fontSize: '18px', margin: '14px 0', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Verify Wallet
-            </h1>
+            <img src="/images/zypto-base-hook.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} />
+            <h1 style={{ fontSize: '18px', margin: '14px 0', fontWeight: '900' }}>Verify Wallet</h1>
             <button 
               onClick={handleCheckRewards}
               disabled={isLoading}
               style={{ 
-                width: '100%', 
-                padding: '14px', 
-                backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, 
-                color: isLoading ? '#666' : 'black', 
-                border: 'none', 
-                borderRadius: '12px', 
-                fontWeight: '800',
-                fontSize: '16px',
-                cursor: isLoading ? 'default' : 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: isLoading ? 'none' : `0 4px 12px ${zyptoGreen}33`
+                width: '100%', padding: '14px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, 
+                color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800', fontSize: '16px'
               }}
             >
               {isLoading ? "Verifying..." : "Check Rewards"}
@@ -113,80 +67,58 @@ export default function MiniApp() {
           </div>
         )}
 
-        {/* STEP 2: VERIFIED */}
         {step === 2 && (
           <div style={{ animation: 'bounceIn 0.6s ease-out' }}>
-            <div style={{ padding: '0 6px' }}>
-              <img 
-                src="/images/zypto-base-verified.png" 
-                style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} 
-                alt="Verified"
-              />
-            </div>
-            <h1 style={{ color: zyptoGreen, margin: '14px 0', fontSize: '24px', fontWeight: '900' }}>
-              VERIFIED!
-            </h1>
+            <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} />
+            <h1 style={{ color: zyptoGreen, margin: '14px 0', fontSize: '24px', fontWeight: '900' }}>VERIFIED!</h1>
             <button 
               onClick={() => setStep(3)}
-              style={{ 
-                width: '100%', 
-                padding: '14px', 
-                backgroundColor: zyptoGreen, 
-                color: 'black', 
-                border: 'none', 
-                borderRadius: '12px', 
-                fontWeight: '800',
-                fontSize: '16px',
-                cursor: 'pointer'
-              }}
+              style={{ width: '100%', padding: '14px', backgroundColor: zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800' }}
             >
               See Rewards
             </button>
           </div>
         )}
 
-        {/* STEP 3: CLAIM */}
         {step === 3 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
-            <div style={{ padding: '0 6px' }}>
-              <img 
-                src="/images/zypto-base-perks.png" 
-                style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} 
-                alt="Perks"
-              />
-            </div>
-            <button 
-              onClick={() => handleLink(referralUrl)}
+            <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '18px', marginBottom: '6px' }} />
+            
+            {/* KRIITILINE MUUDATUS: Kasutame puhast HTML linki, mis on maskeeritud nupuks */}
+            <a 
+              href={referralUrl}
+              target="_top"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                // Kui oleme Farcasteris, proovime ikka SDK-d esimesena
+                if (sdk?.actions?.openUrl) {
+                  e.preventDefault();
+                  sdk.actions.openUrl(referralUrl);
+                }
+              }}
               style={{ 
+                display: 'block',
                 width: '100%', 
-                padding: '14px', 
+                padding: '16px 0', 
                 marginTop: '12px', 
                 background: `linear-gradient(135deg, #06b6d4, ${zyptoGreen})`, 
                 color: 'black', 
-                border: 'none', 
+                textDecoration: 'none',
                 borderRadius: '12px', 
                 fontWeight: '800',
                 fontSize: '16px',
-                cursor: 'pointer',
                 boxShadow: '0 6px 15px rgba(0,255,136,0.3)'
               }}
             >
               Claim Rewards
-            </button>
+            </a>
           </div>
         )}
       </div>
 
       <style jsx global>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes bounceIn {
-          0% { opacity: 0; transform: scale(0.8); }
-          70% { transform: scale(1.05); }
-          100% { opacity: 1; transform: scale(1); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.8); } 70% { transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
       `}</style>
     </div>
   );
