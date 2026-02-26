@@ -13,6 +13,7 @@
         "url": "https://zypto-base-rewards.vercel.app"
       }
     },
+    "aspectRatio": "3:2",
     "splashImageUrl": "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
     "splashBackgroundColor": "#050505",
     "webhookUrl": "https://zypto-base-rewards.vercel.app/api/webhook",
