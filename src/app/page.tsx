@@ -14,7 +14,7 @@ export default function MiniApp() {
 
   const handleCheckRewards = () => {
     setIsLoading(true);
-    // "Mõttepaus" ootusärevuse tekitamiseks
+    // 1.5-sekundiline "mõttepaus" usaldusväärsuse ja ootusärevuse tekitamiseks
     setTimeout(() => {
       setIsLoading(false);
       setStep(2);
@@ -42,26 +42,26 @@ export default function MiniApp() {
       flexDirection: 'column', 
       alignItems: 'center', 
       justifyContent: 'center', 
-      padding: '12px', // Vähendatud padding, et ekraanil rohkem ruumi oleks
+      padding: '12px',
       color: 'white',
       overflow: 'hidden'
     }}>
       
-      {/* LOGO - Kompaktne, et mitte sisu alla suruda */}
+      {/* LOGO - Kompaktne ja stiilne */}
       <div style={{ marginBottom: '16px', filter: 'drop-shadow(0 0 8px rgba(0,255,136,0.2))' }}>
         <img 
           src="/icon.png" 
           alt="Zypto Logo" 
-          style={{ width: '64px', height: '64px', borderRadius: '16px', objectFit: 'contain' }} 
+          style={{ width: '60px', height: '60px', borderRadius: '14px', objectFit: 'contain' }} 
         />
       </div>
 
-      {/* PEAMINE KONTEINER - Safe Area parandustega */}
+      {/* PEAMINE KONTEINER - Kitsas raam (300px), mis mahub igale poole */}
       <div style={{ 
         width: '100%', 
-        maxWidth: '300px', // KITSAM (oli 340px), et mahuks Warpcasti raamidesse
+        maxWidth: '300px', 
         backgroundColor: '#111113', 
-        padding: '16px', 
+        padding: '20px 16px', 
         borderRadius: '28px', 
         textAlign: 'center',
         border: '1px solid rgba(255,255,255,0.08)',
@@ -69,15 +69,22 @@ export default function MiniApp() {
         margin: '0 auto'
       }}>
         
-        {/* STEP 1: HOOK */}
+        {/* STEP 1: HOOK (Lisatud padding pildile, et vältida "katkist" äärt) */}
         {step === 1 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
-            <img 
-              src="/images/zypto-base-hook.png" 
-              style={{ width: '100%', borderRadius: '18px', marginBottom: '4px' }} 
-              alt="Hook"
-            />
-            <h1 style={{ fontSize: '18px', margin: '12px 0', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <div style={{ padding: '0 6px' }}> {/* See nihutab pildi servadest eemale */}
+              <img 
+                src="/images/zypto-base-hook.png" 
+                style={{ 
+                  width: '100%', 
+                  borderRadius: '16px', 
+                  marginBottom: '6px',
+                  display: 'block'
+                }} 
+                alt="Hook"
+              />
+            </div>
+            <h1 style={{ fontSize: '18px', margin: '14px 0', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               Verify Wallet
             </h1>
             <button 
@@ -91,7 +98,7 @@ export default function MiniApp() {
                 border: 'none', 
                 borderRadius: '12px', 
                 fontWeight: '800',
-                fontSize: '16px', // Veidi väiksem font, et mahuks nupule ära
+                fontSize: '16px',
                 cursor: isLoading ? 'default' : 'pointer',
                 transition: 'all 0.2s ease',
                 boxShadow: isLoading ? 'none' : `0 4px 12px ${zyptoGreen}33`
@@ -105,12 +112,14 @@ export default function MiniApp() {
         {/* STEP 2: VERIFIED */}
         {step === 2 && (
           <div style={{ animation: 'bounceIn 0.6s ease-out' }}>
-            <img 
-              src="/images/zypto-base-verified.png" 
-              style={{ width: '100%', borderRadius: '18px', marginBottom: '4px' }} 
-              alt="Verified"
-            />
-            <h1 style={{ color: zyptoGreen, margin: '12px 0', fontSize: '24px', fontWeight: '900' }}>
+            <div style={{ padding: '0 6px' }}>
+              <img 
+                src="/images/zypto-base-verified.png" 
+                style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} 
+                alt="Verified"
+              />
+            </div>
+            <h1 style={{ color: zyptoGreen, margin: '14px 0', fontSize: '24px', fontWeight: '900' }}>
               VERIFIED!
             </h1>
             <button 
@@ -135,11 +144,13 @@ export default function MiniApp() {
         {/* STEP 3: CLAIM */}
         {step === 3 && (
           <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
-            <img 
-              src="/images/zypto-base-perks.png" 
-              style={{ width: '100%', borderRadius: '18px', marginBottom: '4px' }} 
-              alt="Perks"
-            />
+            <div style={{ padding: '0 6px' }}>
+              <img 
+                src="/images/zypto-base-perks.png" 
+                style={{ width: '100%', borderRadius: '16px', marginBottom: '6px' }} 
+                alt="Perks"
+              />
+            </div>
             <button 
               onClick={() => handleLink(referralUrl)}
               style={{ 
