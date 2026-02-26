@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 const frame = {
   version: "1",
   imageUrl: "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
+  aspectRatio: "3:2",
   button: {
     title: "Check Rewards", 
     action: {
