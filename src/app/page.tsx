@@ -8,12 +8,12 @@ export default function MiniApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<null | 'why' | 'calc' | 'community'>(null);
   
-  // Calculator variables - focused on referral/passive income
+  // Kalkulaatori muutujad - passiivne tulu
   const [numReferrals, setNumReferrals] = useState(5);
   const [refVolume, setRefVolume] = useState(10000);
   const [numVKC, setNumVKC] = useState(2);
 
-  // Gamification Data - Manual updates based on your dashboard
+  // Mängustamise andmed (Manual Alpha Board)
   const alphaBoard = [
     { wallet: '0x...eed0', task: '👑 Zypto King', status: 'Verified' },
     { wallet: '0x...4a2b', task: '🏦 Bill Slayer', status: 'Verified' },
@@ -41,10 +41,10 @@ export default function MiniApp() {
     }, 1200);
   };
 
-  // Logic based on marketing strategy [cite: 4, 5, 6]
-  const welcomeBonusTotal = numReferrals * 5; // $5 per referral
-  const swapComm = refVolume * 0.001; // 0.1% commission
-  const vkcBonus = numVKC * 25; // $25 per VKC referral
+  [cite_start]// Arvutusloogika vastavalt turundusstrateegiale [cite: 4, 5, 6]
+  const welcomeBonusTotal = numReferrals * 5; [cite_start]// $5 per referral [cite: 4]
+  const swapComm = refVolume * 0.001; [cite_start]// 0.1% commission [cite: 5]
+  const vkcBonus = numVKC * 25; [cite_start]// $25 per VKC referral [cite: 6]
   
   const totalMonthlyPassive = (welcomeBonusTotal + swapComm + vkcBonus).toFixed(0);
 
@@ -56,12 +56,10 @@ export default function MiniApp() {
       color: 'white', overflow: 'hidden', position: 'relative'
     }}>
       
-      {/* LOGO */}
       <div style={{ marginBottom: '16px' }}>
         <img src="/icon.png" alt="Logo" style={{ width: '60px', height: '60px', borderRadius: '14px' }} />
       </div>
 
-      {/* MAIN CARD */}
       <div style={{ 
         width: '100%', maxWidth: '300px', backgroundColor: '#111113', 
         padding: '24px 16px', borderRadius: '28px', textAlign: 'center',
@@ -99,7 +97,7 @@ export default function MiniApp() {
         )}
       </div>
 
-      {/* MODAL OVERLAYS */}
+      {/* MODALID */}
       {activeOverlay && (
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.92)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', animation: 'fadeIn 0.2s' }}>
           <div style={{ backgroundColor: '#111113', width: '100%', maxWidth: '320px', borderRadius: '28px', padding: '24px', border: '1px solid rgba(255,255,255,0.1)', position: 'relative', maxHeight: '90vh', overflowY: 'auto' }}>
@@ -151,7 +149,8 @@ export default function MiniApp() {
                 </div>
                 <div style={{ marginBottom: '12px' }}>
                   <label style={{ fontSize: '11px', color: '#888' }}>Referral Swap Volume: <b>${refVolume.toLocaleString()}</b></label>
-                  <input type="range" min="1000" max="200000" step="1000" value={refVolume} onChange={(e) => setRefVolume(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
+                  {/* Uuendatud ülempiir $500,000 peale */}
+                  <input type="range" min="1000" max="500000" step="1000" value={refVolume} onChange={(e) => setRefVolume(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
                 </div>
                 <div style={{ marginBottom: '15px' }}>
                   <label style={{ fontSize: '11px', color: '#888' }}>VKC Referrals: <b>{numVKC}</b></label>
@@ -173,7 +172,6 @@ export default function MiniApp() {
               <div style={{ textAlign: 'left' }}>
                 <h2 style={{ fontSize: '20px', marginBottom: '8px', fontWeight: '900', color: zyptoGreen }}>Weekly Alpha Board</h2>
                 <p style={{ fontSize: '11px', color: '#888', marginBottom: '15px' }}>Top 5 Zypto Friends this week</p>
-                
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px' }}>
                   {alphaBoard.map((user, i) => (
                     <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
@@ -185,7 +183,6 @@ export default function MiniApp() {
                     </div>
                   ))}
                 </div>
-
                 <div style={{ marginBottom: '20px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', marginBottom: '6px' }}>
                     <span style={{ fontWeight: '800' }}>Monthly Goal: 100k ZYPs</span>
@@ -196,8 +193,6 @@ export default function MiniApp() {
                   </div>
                   <p style={{ fontSize: '9px', color: '#666', marginTop: '6px', textAlign: 'center' }}>🎯 Reach 100% to unlock a $25 $ZYPTO raffle!</p>
                 </div>
-
-                {/* BOT LINK */}
                 <a href={telegramBotUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '14px', textAlign: 'center', background: 'white', color: 'black', borderRadius: '12px', textDecoration: 'none', fontWeight: '900', fontSize: '13px' }}>
                   📸 Launch Rewards Bot
                 </a>
@@ -208,10 +203,10 @@ export default function MiniApp() {
         </div>
       )}
 
-      {/* TICKER */}
+      {/* TICKER - Uuendatud liitujate arvuga: 34 */}
       <div className="ticker-wrap" style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden' }}>
         <div className="ticker" style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%', animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888' }}>
-          🚀 Already 84 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
+          🚀 Already 34 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
         </div>
       </div>
 
