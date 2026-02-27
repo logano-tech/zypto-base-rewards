@@ -4,11 +4,8 @@ import { useState, useEffect } from 'react';
 import sdk from '@farcaster/miniapp-sdk';
 
 export default function MiniApp() {
-  // Olemasolevad olekud
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  
-  // Uued olekud lisakihtide jaoks
   const [activeOverlay, setActiveOverlay] = useState<null | 'why' | 'calc'>(null);
   const [spendAmount, setSpendAmount] = useState(1000);
 
@@ -27,38 +24,30 @@ export default function MiniApp() {
     }, 1200);
   };
 
-  // Kalkulaatori loogika: eeldame u 3% preemiat (ZYP-id + cashback) 
-  const estimatedRewards = (spendAmount * 0.03).toFixed(0);
+  // Kalkulaatori loogika põhinedes strateegial
+  const welcomeBonus = 5; // Ühekordne tervitusboonus 
+  const referralComm = (spendAmount * 0.001).toFixed(2); // 0.1% eluaegne komisjon 
+  const zypsBack = (spendAmount * 0.03).toFixed(0); // ~3% ZYPsBack (cashback/rewards) [cite: 54, 74]
+  const totalPotential = (welcomeBonus + parseFloat(referralComm) + parseFloat(zypsBack)).toFixed(0);
 
   return (
     <div style={{ 
-      backgroundColor: '#050505', 
-      minHeight: '100vh', 
-      width: '100%',
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      padding: '12px 12px 60px 12px', // Altpoolt vaba ruumi tickeri jaoks
-      color: 'white',
-      overflow: 'hidden',
-      position: 'relative'
+      backgroundColor: '#050505', minHeight: '100vh', width: '100%',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', 
+      justifyContent: 'center', padding: '12px 12px 80px 12px',
+      color: 'white', overflow: 'hidden', position: 'relative'
     }}>
       
-      {/* LOGO JA PÕHISISU */}
+      {/* LOGO */}
       <div style={{ marginBottom: '16px' }}>
         <img src="/icon.png" alt="Logo" style={{ width: '60px', height: '60px', borderRadius: '14px' }} />
       </div>
 
+      {/* PÕHIKAART */}
       <div style={{ 
-        width: '100%', 
-        maxWidth: '300px', 
-        backgroundColor: '#111113', 
-        padding: '24px 16px', 
-        borderRadius: '28px', 
-        textAlign: 'center',
-        border: '1px solid rgba(255,255,255,0.08)',
-        zIndex: 1
+        width: '100%', maxWidth: '300px', backgroundColor: '#111113', 
+        padding: '24px 16px', borderRadius: '28px', textAlign: 'center',
+        border: '1px solid rgba(255,255,255,0.08)', zIndex: 1
       }}>
         
         {step === 1 && (
@@ -82,10 +71,7 @@ export default function MiniApp() {
           <div style={{ animation: 'fadeIn 0.4s' }}>
             <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '8px' }} />
             <h1 style={{ color: zyptoGreen, margin: '14px 0', fontSize: '24px', fontWeight: '900' }}>VERIFIED!</h1>
-            <button 
-              onClick={() => setStep(3)}
-              style={{ width: '100%', padding: '14px', backgroundColor: zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800' }}
-            >
+            <button onClick={() => setStep(3)} style={{ width: '100%', padding: '14px', backgroundColor: zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800' }}>
               See Rewards
             </button>
           </div>
@@ -95,31 +81,36 @@ export default function MiniApp() {
           <div style={{ animation: 'fadeIn 0.4s' }}>
             <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '18px', marginBottom: '8px' }} />
             
-            <a 
-              href={referralUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ 
+            <a href={referralUrl} target="_blank" rel="noopener noreferrer" style={{ 
                 display: 'block', width: '100%', padding: '16px 0', marginTop: '16px', 
                 background: `linear-gradient(135deg, #06b6d4, ${zyptoGreen})`, 
                 color: 'black', textDecoration: 'none', borderRadius: '12px', 
                 fontWeight: '900', fontSize: '18px', boxShadow: '0 8px 20px rgba(0,255,136,0.3)'
-              }}
-            >
+            }}>
               Claim Rewards
             </a>
             
-            {/* UUED DISKREETSED NUPUD SAMM 3 ALL */}
-            <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
+            {/* UUENDATUD DISKREETSED NUPUD */}
+            <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
               <button 
                 onClick={() => setActiveOverlay('why')}
-                style={{ flex: 1, padding: '8px', fontSize: '11px', backgroundColor: 'rgba(255,255,255,0.05)', color: '#ccc', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                style={{ 
+                  flex: 1, padding: '10px', fontSize: '11px', fontWeight: '700',
+                  background: 'rgba(255,255,255,0.03)', color: 'white', 
+                  border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px',
+                  cursor: 'pointer', transition: 'all 0.2s'
+                }}
               >
                 Why Zypto?
               </button>
               <button 
                 onClick={() => setActiveOverlay('calc')}
-                style={{ flex: 1, padding: '8px', fontSize: '11px', backgroundColor: 'rgba(255,255,255,0.05)', color: '#ccc', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                style={{ 
+                  flex: 1, padding: '10px', fontSize: '11px', fontWeight: '700',
+                  background: 'rgba(255,255,255,0.03)', color: 'white', 
+                  border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px',
+                  cursor: 'pointer'
+                }}
               >
                 Earn Calc
               </button>
@@ -128,49 +119,79 @@ export default function MiniApp() {
         )}
       </div>
 
-      {/* INFO-KIHTIDE MODAL (OVERLAY) */}
+      {/* MODAL OVERLAY */}
       {activeOverlay && (
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.9)', zIndex: 10, display: 'flex',
-          alignItems: 'center', justifyContent: 'center', padding: '20px', animation: 'fadeIn 0.3s'
+          backgroundColor: 'rgba(0,0,0,0.92)', zIndex: 10, display: 'flex',
+          alignItems: 'center', justifyContent: 'center', padding: '20px', animation: 'fadeIn 0.2s'
         }}>
           <div style={{
             backgroundColor: '#111113', width: '100%', maxWidth: '320px',
-            borderRadius: '24px', padding: '20px', border: '1px solid rgba(255,255,255,0.1)', position: 'relative'
+            borderRadius: '28px', padding: '24px', border: '1px solid rgba(255,255,255,0.1)', position: 'relative'
           }}>
             <button 
               onClick={() => setActiveOverlay(null)}
-              style={{ position: 'absolute', top: '15px', right: '15px', background: 'none', border: 'none', color: '#666', fontSize: '20px', fontWeight: 'bold' }}
+              style={{ position: 'absolute', top: '15px', right: '15px', background: 'none', border: 'none', color: '#666', fontSize: '22px', cursor: 'pointer' }}
             >✕</button>
 
             {activeOverlay === 'why' && (
-              <div>
-                <h2 style={{ fontSize: '18px', marginBottom: '15px', color: zyptoGreen }}>Why Zypto App?</h2>
-                <div style={{ textAlign: 'left', fontSize: '13px', lineHeight: '1.6' }}>
-                  <p>✅ <b>5 Apps in 1:</b> Wallet, Card, Bills & More [cite: 58]</p>
-                  <p>✅ <b>Spend Anywhere:</b> Visa/Mastercard in 140+ countries [cite: 78]</p>
-                  <p>✅ <b>Non-Custodial:</b> You always control your keys [cite: 70]</p>
-                  <p>✅ <b>No Bridging:</b> Swap across 70+ chains instantly [cite: 66]</p>
+              <div style={{ textAlign: 'left' }}>
+                <h2 style={{ fontSize: '20px', marginBottom: '20px', fontWeight: '900', color: zyptoGreen }}>All-in-One Power</h2>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: '18px' }}>🏦</span>
+                    <div>
+                      <div style={{ fontWeight: '800', fontSize: '14px' }}>Replace 5 Apps</div>
+                      <div style={{ fontSize: '12px', color: '#888' }}>Wallet, Exchange, Cards and Bill Pay in one.</div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: '18px' }}>💳</span>
+                    <div>
+                      <div style={{ fontWeight: '800', fontSize: '14px' }}>Real World Spending</div>
+                      <div style={{ fontSize: '12px', color: '#888' }}>Virtual & Physical Visa cards accepted globally.</div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: '18px' }}>🔐</span>
+                    <div>
+                      <div style={{ fontWeight: '800', fontSize: '14px' }}>Non-Custodial Security</div>
+                      <div style={{ fontSize: '12px', color: '#888' }}>Your keys, your crypto. Total control.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
 
             {activeOverlay === 'calc' && (
               <div>
-                <h2 style={{ fontSize: '18px', marginBottom: '10px', color: zyptoGreen }}>Rewards Calculator</h2>
-                <p style={{ fontSize: '12px', color: '#888', marginBottom: '15px' }}>Estimate your monthly earnings</p>
+                <h2 style={{ fontSize: '20px', marginBottom: '8px', fontWeight: '900', color: zyptoGreen }}>Your Potential</h2>
+                <p style={{ fontSize: '12px', color: '#888', marginBottom: '20px' }}>Based on $5 bonus + monthly activity</p>
                 
                 <input 
                   type="range" min="100" max="5000" step="100" 
                   value={spendAmount} onChange={(e) => setSpendAmount(Number(e.target.value))}
-                  style={{ width: '100%', accentColor: zyptoGreen, marginBottom: '15px' }}
+                  style={{ width: '100%', accentColor: zyptoGreen, marginBottom: '20px', cursor: 'pointer' }}
                 />
                 
-                <div style={{ backgroundColor: 'rgba(0,255,136,0.05)', padding: '15px', borderRadius: '12px', border: '1px dashed #00ff8844' }}>
-                  <div style={{ fontSize: '12px', color: '#aaa' }}>If you spend <b>${spendAmount}/mo</b></div>
-                  <div style={{ fontSize: '24px', fontWeight: '900', color: zyptoGreen, margin: '5px 0' }}>~${estimatedRewards}</div>
-                  <div style={{ fontSize: '11px', color: '#666' }}>back in ZYP rewards per month </div>
+                <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px' }}>
+                    <span style={{ color: '#aaa' }}>Welcome Bonus</span>
+                    <span style={{ fontWeight: '700', color: zyptoGreen }}>+${welcomeBonus}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px' }}>
+                    <span style={{ color: '#aaa' }}>ZYPsBack (Personal)</span>
+                    <span style={{ fontWeight: '700' }}>+${zypsBack}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px' }}>
+                    <span style={{ color: '#aaa' }}>Referral Rewards (0.1%)</span>
+                    <span style={{ fontWeight: '700' }}>+${referralComm}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px', padding: '12px', backgroundColor: 'rgba(0,255,136,0.08)', borderRadius: '12px' }}>
+                    <span style={{ fontWeight: '800' }}>Total Est. Value</span>
+                    <span style={{ fontWeight: '900', color: zyptoGreen, fontSize: '18px' }}>${totalPotential}</span>
+                  </div>
                 </div>
               </div>
             )}
@@ -178,17 +199,17 @@ export default function MiniApp() {
         </div>
       )}
 
-      {/* SOCIAL PROOF TICKER */}
+      {/* TICKER */}
       <div className="ticker-wrap" style={{
         position: 'fixed', bottom: 0, left: 0, width: '100%',
-        backgroundColor: 'rgba(255,255,255,0.03)', borderTop: '1px solid rgba(255,255,255,0.05)',
-        padding: '8px 0', overflow: 'hidden'
+        backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden'
       }}>
         <div className="ticker" style={{
           display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%',
-          animation: 'marquee 20s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#aaa'
+          animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888'
         }}>
-          🔥 84 legends joined this hour | <span style={{ color: zyptoGreen }}>0.1% lifetime swap rewards active</span> | $5 signup bonus live 
+          🚀 84 legends joined this hour • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • Earn ZYPs on every spend • Available in 190+ countries
         </div>
       </div>
 
@@ -197,10 +218,6 @@ export default function MiniApp() {
         @keyframes marquee {
           0% { transform: translate(0, 0); }
           100% { transform: translate(-100%, 0); }
-        }
-        .ticker-wrap .ticker {
-          display: inline-block;
-          padding-right: 100%;
         }
       `}</style>
     </div>
