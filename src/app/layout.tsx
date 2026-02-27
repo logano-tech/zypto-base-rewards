@@ -1,46 +1,17 @@
-import type { Metadata } from 'next';
-
-const frame = {
-  version: "1",
-  imageUrl: "https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png",
-  aspectRatio: "3:2",
-  button: {
-    title: "Check Rewards", 
-    action: {
-      type: "launch_frame", 
-      name: "Zypto Rewards",
-      url: "https://zypto-base-rewards.vercel.app",
-      splashImageUrl: "https://zypto-base-rewards.vercel.app/icon.png",
-      splashBackgroundColor: "#050505"
-    }
-  }
-};
-
-export const metadata: Metadata = {
-  title: "Zypto Rewards Hub",
-  description: "Verify your wallet and unlock exclusive rewards on Base",
+// src/app/layout.tsx
+export const metadata = {
+  title: 'Zypto Base Rewards',
+  description: 'Stop Bridging, Start Spending on Base',
   openGraph: {
-    title: "Zypto Rewards Hub",
-    description: "Verify your wallet and unlock exclusive rewards on Base",
-    images: ["https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png"],
+    title: 'Zypto Base Rewards',
+    description: 'Claim your $5 bonus and spend crypto on Base',
+    images: ['/images/zypto-base-hook.png'],
   },
   other: {
-    "fc:miniapp": JSON.stringify(frame),
+    'fc:frame': 'v2',
+    'fc:frame:image': 'https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png',
+    'fc:frame:button:1': 'Check Your $5 Bonus',
+    'fc:frame:button:1:action': 'link',
+    'fc:frame:button:1:target': 'https://ref.zypto.com/VMvrJEHIvPb',
   },
 };
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        {/* Piltide eellaadimine kiiremaks vahetuseks */}
-        <link rel="preload" href="https://zypto-base-rewards.vercel.app/images/zypto-base-verified.png" as="image" />
-        <link rel="preload" href="https://zypto-base-perks.png" as="image" />
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
-      </head>
-      <body style={{ backgroundColor: '#050505', margin: 0, padding: 0 }}>
-        {children}
-      </body>
-    </html>
-  );
-}
