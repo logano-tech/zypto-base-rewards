@@ -5,22 +5,21 @@ const APP_URL = 'https://zypto-base-rewards.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
-  description: 'Stop Bridging, Start Spending on Base',
+  description: 'Verify your wallet and unlock exclusive rewards on Base',
   openGraph: {
-    title: 'Zypto Rewards',
+    title: 'Zypto Rewards Hub',
     description: 'Claim your $5 bonus and spend crypto on Base',
     url: APP_URL,
     images: [`${APP_URL}/images/zypto-base-hook.png`],
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zypto Rewards',
+    title: 'Zypto Rewards Hub',
     description: 'Stop Bridging, Start Spending on Base',
     images: [`${APP_URL}/images/zypto-base-hook.png`],
   },
   other: {
-    // See peab ühtima sinu JSON-is oleva infoga
+    // See osa sünkroonib sinu farcaster.json-iga, et märk oleks "Valid"
     'fc:frame': JSON.stringify({
       version: "1",
       name: "Zypto Rewards",
