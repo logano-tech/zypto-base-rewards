@@ -8,11 +8,10 @@ export default function MiniApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<null | 'why' | 'calc'>(null);
   
-  // Calculator variables
+  // Kalkulaatori muutujad - keskendatud passiivsele tulule
   const [numReferrals, setNumReferrals] = useState(5);
   const [refVolume, setRefVolume] = useState(10000);
   const [numVKC, setNumVKC] = useState(2);
-  const [ownSpend, setOwnSpend] = useState(8000);
 
   const referralUrl = "https://ref.zypto.com/VMvrJEHIvPb";
   const zyptoGreen = '#00ff88';
@@ -29,12 +28,13 @@ export default function MiniApp() {
     }, 1200);
   };
 
-  // Logic based on the Marketing Strategy
-  const welcomeBonusTotal = numReferrals * 5; // $5 per referral [cite: 4]
-  const swapComm = refVolume * 0.001; // 0.1% commission [cite: 5]
-  const vkcBonus = numVKC * 25; // $25 per VKC [cite: 6]
-  const zypsBack = ownSpend * 0.03125; // Aiming for ~$250 at $8000 spend [cite: 74]
-  const totalMonthly = (welcomeBonusTotal + swapComm + vkcBonus + zypsBack).toFixed(0);
+  // Turundusstrateegial põhinev loogika
+  const welcomeBonusTotal = numReferrals * 5; // $5 liituja kohta [cite: 4]
+  const swapComm = refVolume * 0.001; // 0.1% vahendustasu [cite: 5]
+  const vkcBonus = numVKC * 25; // $25 boonus Vault Key Card müügi pealt [cite: 6]
+  
+  // Kokku passiivne tulu referralite pealt
+  const totalMonthlyPassive = (welcomeBonusTotal + swapComm + vkcBonus).toFixed(0);
 
   return (
     <div style={{ 
@@ -49,7 +49,7 @@ export default function MiniApp() {
         <img src="/icon.png" alt="Logo" style={{ width: '60px', height: '60px', borderRadius: '14px' }} />
       </div>
 
-      {/* MAIN CARD */}
+      {/* PÕHIKAART */}
       <div style={{ 
         width: '100%', maxWidth: '300px', backgroundColor: '#111113', 
         padding: '24px 16px', borderRadius: '28px', textAlign: 'center',
@@ -121,7 +121,7 @@ export default function MiniApp() {
                     <span style={{ fontSize: '18px' }}>🛡️</span>
                     <div>
                       <div style={{ fontWeight: '800', fontSize: '14px' }}>Zypto Vault Key Card</div>
-                      <div style={{ fontSize: '12px', color: '#888' }}>Tap-to-transact cold storage for maximum safety</div>
+                      <div style={{ fontSize: '12px', color: '#888' }}>Tap-to-transact cold storage for maximum safety [cite: 71]</div>
                     </div>
                   </div>
                 </div>
@@ -130,40 +130,45 @@ export default function MiniApp() {
 
             {activeOverlay === 'calc' && (
               <div style={{ textAlign: 'left' }}>
-                <h2 style={{ fontSize: '20px', marginBottom: '8px', fontWeight: '900', color: zyptoGreen }}>Earnings Estimator</h2>
+                <h2 style={{ fontSize: '20px', marginBottom: '8px', fontWeight: '900', color: zyptoGreen }}>Referral Rewards</h2>
+                <p style={{ fontSize: '11px', color: '#888', marginBottom: '15px' }}>Estimate your monthly passive income</p>
                 
                 <div style={{ marginBottom: '12px' }}>
-                  <label style={{ fontSize: '11px', color: '#888' }}>New Referrals: <b>{numReferrals}</b></label>
+                  <label style={{ fontSize: '11px', color: '#888' }}>Active Referrals: <b>{numReferrals}</b></label>
                   <input type="range" min="1" max="50" value={numReferrals} onChange={(e) => setNumReferrals(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
                 </div>
 
                 <div style={{ marginBottom: '12px' }}>
-                  <label style={{ fontSize: '11px', color: '#888' }}>Ref. Monthly Volume: <b>${refVolume.toLocaleString()}</b></label>
+                  <label style={{ fontSize: '11px', color: '#888' }}>Referral Swap Volume: <b>${refVolume.toLocaleString()}</b></label>
                   <input type="range" min="1000" max="50000" step="1000" value={refVolume} onChange={(e) => setRefVolume(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
                 </div>
 
-                <div style={{ marginBottom: '12px' }}>
-                  <label style={{ fontSize: '11px', color: '#888' }}>VKC Sales: <b>{numVKC}</b></label>
+                <div style={{ marginBottom: '15px' }}>
+                  <label style={{ fontSize: '11px', color: '#888' }}>VKC Referrals: <b>{numVKC}</b></label>
                   <input type="range" min="0" max="10" value={numVKC} onChange={(e) => setNumVKC(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
                 </div>
 
-                <div style={{ backgroundColor: 'rgba(0,255,136,0.06)', padding: '12px', borderRadius: '12px', border: '1px solid rgba(0,255,136,0.15)' }}>
+                <div style={{ backgroundColor: 'rgba(0,255,136,0.06)', padding: '12px', borderRadius: '16px', border: '1px solid rgba(0,255,136,0.15)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                    <span>Referral Bonuses ($5)</span><span>${welcomeBonusTotal}</span>
+                    <span>Sign-up Bonuses ($5)</span><span>${welcomeBonusTotal}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
-                    <span>Swap Comm (0.1%)</span><span>${swapComm}</span>
+                    <span>Swap Commissions (0.1%)</span><span>${swapComm}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '6px', marginBottom: '8px' }}>
                     <span>VKC Bonuses ($25)</span><span>${vkcBonus}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px', marginBottom: '4px' }}>
-                    <span>Your ZYPsBack (~$250)</span><span>+${zypsBack.toFixed(0)}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontWeight: '800', fontSize: '13px' }}>Total Referral Income</span>
+                    <span style={{ fontWeight: '900', color: zyptoGreen, fontSize: '20px' }}>${totalMonthlyPassive}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px' }}>
-                    <span style={{ fontWeight: '800' }}>Est. Monthly Total</span>
-                    <span style={{ fontWeight: '900', color: zyptoGreen, fontSize: '18px' }}>${totalMonthly}</span>
-                  </div>
+                </div>
+
+                {/* OPTIMISTLIK RIDA */}
+                <div style={{ marginTop: '16px', textAlign: 'center', padding: '10px', border: '1px dashed rgba(6, 182, 212, 0.3)', borderRadius: '12px', backgroundColor: 'rgba(6, 182, 212, 0.03)' }}>
+                  <p style={{ fontSize: '11px', margin: 0, color: '#06b6d4', fontWeight: '700', lineHeight: '1.4' }}>
+                    ✨ Plus ZYPsBack rewards from your own personal transactions & spending!
+                  </p>
                 </div>
               </div>
             )}
@@ -171,7 +176,7 @@ export default function MiniApp() {
         </div>
       )}
 
-      {/* TICKER */}
+      {/* TICKER (Jooksev tekstiriba) */}
       <div className="ticker-wrap" style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden' }}>
         <div className="ticker" style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%', animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888' }}>
           🚀 Already 84 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
