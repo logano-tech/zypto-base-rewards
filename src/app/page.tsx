@@ -8,7 +8,7 @@ export default function MiniApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<null | 'why' | 'calc'>(null);
   
-  // Kalkulaatori muutujad - keskendatud passiivsele tulule
+  // Calculator variables
   const [numReferrals, setNumReferrals] = useState(5);
   const [refVolume, setRefVolume] = useState(10000);
   const [numVKC, setNumVKC] = useState(2);
@@ -28,12 +28,11 @@ export default function MiniApp() {
     }, 1200);
   };
 
-  // Turundusstrateegial põhinev loogika
-  const welcomeBonusTotal = numReferrals * 5; // $5 liituja kohta [cite: 4]
-  const swapComm = refVolume * 0.001; // 0.1% vahendustasu [cite: 5]
-  const vkcBonus = numVKC * 25; // $25 boonus Vault Key Card müügi pealt [cite: 6]
+  // Logic based on marketing strategy [cite: 3, 4, 5, 6]
+  const welcomeBonusTotal = numReferrals * 5; // $5 per referral [cite: 4]
+  const swapComm = refVolume * 0.001; // 0.1% commission [cite: 5]
+  const vkcBonus = numVKC * 25; // $25 per VKC referral [cite: 6]
   
-  // Kokku passiivne tulu referralite pealt
   const totalMonthlyPassive = (welcomeBonusTotal + swapComm + vkcBonus).toFixed(0);
 
   return (
@@ -49,7 +48,7 @@ export default function MiniApp() {
         <img src="/icon.png" alt="Logo" style={{ width: '60px', height: '60px', borderRadius: '14px' }} />
       </div>
 
-      {/* PÕHIKAART */}
+      {/* MAIN CARD */}
       <div style={{ 
         width: '100%', maxWidth: '300px', backgroundColor: '#111113', 
         padding: '24px 16px', borderRadius: '28px', textAlign: 'center',
@@ -121,7 +120,7 @@ export default function MiniApp() {
                     <span style={{ fontSize: '18px' }}>🛡️</span>
                     <div>
                       <div style={{ fontWeight: '800', fontSize: '14px' }}>Zypto Vault Key Card</div>
-                      <div style={{ fontSize: '12px', color: '#888' }}>Tap-to-transact cold storage for maximum safety [cite: 71]</div>
+                      <div style={{ fontSize: '12px', color: '#888' }}>Tap-to-transact cold storage for maximum safety</div>
                     </div>
                   </div>
                 </div>
@@ -140,7 +139,8 @@ export default function MiniApp() {
 
                 <div style={{ marginBottom: '12px' }}>
                   <label style={{ fontSize: '11px', color: '#888' }}>Referral Swap Volume: <b>${refVolume.toLocaleString()}</b></label>
-                  <input type="range" min="1000" max="50000" step="1000" value={refVolume} onChange={(e) => setRefVolume(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
+                  {/* Uuendatud skaala ülemine ots $200,000 peale */}
+                  <input type="range" min="1000" max="200000" step="1000" value={refVolume} onChange={(e) => setRefVolume(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
                 </div>
 
                 <div style={{ marginBottom: '15px' }}>
@@ -164,7 +164,6 @@ export default function MiniApp() {
                   </div>
                 </div>
 
-                {/* OPTIMISTLIK RIDA */}
                 <div style={{ marginTop: '16px', textAlign: 'center', padding: '10px', border: '1px dashed rgba(6, 182, 212, 0.3)', borderRadius: '12px', backgroundColor: 'rgba(6, 182, 212, 0.03)' }}>
                   <p style={{ fontSize: '11px', margin: 0, color: '#06b6d4', fontWeight: '700', lineHeight: '1.4' }}>
                     ✨ Plus ZYPsBack rewards from your own personal transactions & spending!
@@ -176,7 +175,7 @@ export default function MiniApp() {
         </div>
       )}
 
-      {/* TICKER (Jooksev tekstiriba) */}
+      {/* TICKER */}
       <div className="ticker-wrap" style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden' }}>
         <div className="ticker" style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%', animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888' }}>
           🚀 Already 84 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
