@@ -8,12 +8,12 @@ export default function MiniApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<null | 'why' | 'calc' | 'community'>(null);
   
-  // Kalkulaatori muutujad - passiivne tulu
+  // Calculator variables - focused on referral/passive income
   const [numReferrals, setNumReferrals] = useState(5);
   const [refVolume, setRefVolume] = useState(10000);
   const [numVKC, setNumVKC] = useState(2);
 
-  // Mängustamise andmed (Manual Alpha Board)
+  // Gamification Data - Manual updates
   const alphaBoard = [
     { wallet: '0x...eed0', task: '👑 Zypto King', status: 'Verified' },
     { wallet: '0x...4a2b', task: '🏦 Bill Slayer', status: 'Verified' },
@@ -41,11 +41,9 @@ export default function MiniApp() {
     }, 1200);
   };
 
-  [cite_start]// Arvutusloogika vastavalt turundusstrateegiale [cite: 4, 5, 6]
-  const welcomeBonusTotal = numReferrals * 5; [cite_start]// $5 per referral [cite: 4]
-  const swapComm = refVolume * 0.001; [cite_start]// 0.1% commission [cite: 5]
-  const vkcBonus = numVKC * 25; [cite_start]// $25 per VKC referral [cite: 6]
-  
+  const welcomeBonusTotal = numReferrals * 5;
+  const swapComm = refVolume * 0.001;
+  const vkcBonus = numVKC * 25;
   const totalMonthlyPassive = (welcomeBonusTotal + swapComm + vkcBonus).toFixed(0);
 
   return (
@@ -97,7 +95,6 @@ export default function MiniApp() {
         )}
       </div>
 
-      {/* MODALID */}
       {activeOverlay && (
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.92)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', animation: 'fadeIn 0.2s' }}>
           <div style={{ backgroundColor: '#111113', width: '100%', maxWidth: '320px', borderRadius: '28px', padding: '24px', border: '1px solid rgba(255,255,255,0.1)', position: 'relative', maxHeight: '90vh', overflowY: 'auto' }}>
@@ -149,7 +146,6 @@ export default function MiniApp() {
                 </div>
                 <div style={{ marginBottom: '12px' }}>
                   <label style={{ fontSize: '11px', color: '#888' }}>Referral Swap Volume: <b>${refVolume.toLocaleString()}</b></label>
-                  {/* Uuendatud ülempiir $500,000 peale */}
                   <input type="range" min="1000" max="500000" step="1000" value={refVolume} onChange={(e) => setRefVolume(Number(e.target.value))} style={{ width: '100%', accentColor: zyptoGreen, display: 'block' }} />
                 </div>
                 <div style={{ marginBottom: '15px' }}>
@@ -203,7 +199,6 @@ export default function MiniApp() {
         </div>
       )}
 
-      {/* TICKER - Uuendatud liitujate arvuga: 34 */}
       <div className="ticker-wrap" style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden' }}>
         <div className="ticker" style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%', animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888' }}>
           🚀 Already 34 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
