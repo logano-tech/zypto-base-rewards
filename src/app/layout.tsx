@@ -1,14 +1,19 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Zypto Base Rewards',
+  title: 'Zypto Rewards',
   description: 'Stop Bridging, Start Spending on Base',
   openGraph: {
-    title: 'Zypto Base Rewards',
+    title: 'Zypto Rewards',
     description: 'Claim your $5 bonus and spend crypto on Base',
-    images: ['/images/zypto-base-hook.png'],
+    images: ['https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Zypto Rewards',
+    description: 'Stop Bridging, Start Spending on Base',
+    images: ['https://zypto-base-rewards.vercel.app/images/zypto-base-hook.png'],
   },
   other: {
     'fc:frame': 'v2',
@@ -26,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body style={{ margin: 0, padding: 0 }}>{children}</body>
     </html>
   );
 }
