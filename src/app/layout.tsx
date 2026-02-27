@@ -1,5 +1,8 @@
 // src/app/layout.tsx
-export const metadata = {
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
   title: 'Zypto Base Rewards',
   description: 'Stop Bridging, Start Spending on Base',
   openGraph: {
@@ -15,3 +18,15 @@ export const metadata = {
     'fc:frame:button:1:target': 'https://ref.zypto.com/VMvrJEHIvPb',
   },
 };
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
