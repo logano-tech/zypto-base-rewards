@@ -11,18 +11,13 @@ export const metadata: Metadata = {
     description: 'Claim your $5 bonus and spend crypto on Base',
     images: [`${APP_URL}/images/zypto-base-hook.png`],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Zypto Rewards',
-    description: 'Claim your $5 bonus and spend crypto on Base',
-    images: [`${APP_URL}/images/zypto-base-hook.png`],
-  },
   other: {
-    'fc:frame': 'v2',
-    'fc:frame:image': `${APP_URL}/images/zypto-base-hook.png`,
-    'fc:frame:button:1': 'Check Rewards',
-    'fc:frame:button:1:action': 'link',
-    'fc:frame:button:1:target': 'https://ref.zypto.com/VMvrJEHIvPb',
+    // KORREKTNE MINI APP SÜNTAKS
+    'fc:miniapp': 'v1',
+    'fc:miniapp:image': `${APP_URL}/images/zypto-base-hook.png`,
+    'fc:miniapp:button:1': 'Check Rewards',
+    'fc:miniapp:button:1:action': 'link',
+    'fc:miniapp:button:1:target': 'https://ref.zypto.com/VMvrJEHIvPb',
   },
 };
 
