@@ -5,91 +5,118 @@ import sdk from '@farcaster/miniapp-sdk';
 
 export default function ZyptoMiniApp() {
   const [step, setStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const referralUrl = "https://ref.zypto.com/VMvrJEHIvPb";
   const zyptoGreen = '#00ff88';
 
   useEffect(() => { sdk.actions.ready(); }, []);
 
+  const handleVerify = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setStep(2);
+    }, 1200);
+  };
+
   return (
-    <div style={{ backgroundColor: '#050505', minHeight: '100vh', color: 'white', fontFamily: 'sans-serif', padding: '16px' }}>
+    <div style={{ backgroundColor: '#050505', minHeight: '100vh', color: 'white', fontFamily: 'sans-serif', padding: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       
       {/* HEADER & AGENT PERSONA */}
-      <header style={{ textAlign: 'center', marginBottom: '24px' }}>
-        <img src="/icon.png" style={{ width: '50px', borderRadius: '12px' }} alt="Zypto" />
-        <h1 style={{ fontSize: '22px', marginTop: '12px', fontWeight: '900' }}>Stop Bridging, Start Spending</h1>
-        <p style={{ color: zyptoGreen, fontSize: '14px', fontStyle: 'italic' }}>
-          "I'm using Zypto to pay for my life with Base yields. No middlemen." - Zyplink Agent
+      <header style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <img src="/icon.png" style={{ width: '45px', borderRadius: '12px', marginBottom: '10px' }} alt="Zypto" />
+        <h1 style={{ fontSize: '20px', fontWeight: '900', margin: '0' }}>Stop Bridging, Start Spending</h1>
+        <p style={{ color: zyptoGreen, fontSize: '13px', fontStyle: 'italic', marginTop: '5px' }}>
+          "I use Zypto to pay for daily life with Base yields." - Zyplink Agent
         </p>
       </header>
 
-      {/* STEP 1: COMPARISON TABLE */}
-      {step === 1 && (
-        <div style={{ animation: 'fadeIn 0.5s' }}>
-          <div style={{ backgroundColor: '#111', borderRadius: '16px', padding: '16px', marginBottom: '20px', border: '1px solid #222' }}>
-            <h3 style={{ fontSize: '16px', marginBottom: '12px', textAlign: 'center' }}>The Base Advantage</h3>
-            <table style={{ width: '100%', fontSize: '12px', textAlign: 'left', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid #333' }}>
-                  <th style={{ padding: '8px' }}>Feature</th>
-                  <th>Zypto</th>
-                  <th>MetaMask</th>
-                  <th>Coinbase</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style={{ borderBottom: '1px solid #222' }}>
-                  <td style={{ padding: '8px' }}>Non-Custodial</td>
-                  <td>✅</td><td>✅</td><td>❌</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #222' }}>
-                  <td style={{ padding: '8px' }}>Visa / Bill Pay</td>
-                  <td>✅</td><td>❌</td><td>❌</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #222' }}>
-                  <td style={{ padding: '8px' }}>Native Rewards</td>
-                  <td>✅</td><td>❌</td><td>Limited</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <button onClick={() => setStep(2)} style={{ width: '100%', padding: '16px', backgroundColor: zyptoGreen, color: 'black', borderRadius: '12px', fontWeight: 'bold', border: 'none' }}>
-            Check My $5 Bonus
-          </button>
-        </div>
-      )}
+      <div style={{ width: '100%', maxWidth: '340px', backgroundColor: '#111113', padding: '20px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)' }}>
+        
+        {/* SAMM 1: VÕRDLUSTABEL + INTEGRATSIOONID */}
+        {step === 1 && (
+          <div style={{ animation: 'fadeIn 0.4s' }}>
+            {/* INTEGRATSIOONI MÄRGID */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginBottom: '16px', fontSize: '9px' }}>
+               <span style={{ border: '1px solid #0052ff', color: '#0052ff', padding: '2px 5px', borderRadius: '4px', fontWeight: 'bold' }}>BASE 🔵</span>
+               <span style={{ border: '1px solid #375bd2', color: '#375bd2', padding: '2px 5px', borderRadius: '4px', fontWeight: 'bold' }}>CHAINLINK ⛓️</span>
+               <span style={{ border: '1px solid #24ae8f', color: '#24ae8f', padding: '2px 5px', borderRadius: '4px', fontWeight: 'bold' }}>KUCOIN 💎</span>
+            </div>
 
-      {/* STEP 2: SOCIAL PROOF / RECEIPTS */}
-      {step === 2 && (
-        <div style={{ animation: 'fadeIn 0.5s' }}>
-          <h3 style={{ textAlign: 'center', marginBottom: '16px' }}>Verified Utility</h3>
-          
-          <div style={{ marginBottom: '16px', backgroundColor: '#111', borderRadius: '12px', overflow: 'hidden' }}>
-            <img src="/images/receipt-split.png" style={{ width: '100%' }} alt="Receipt" />
-            <p style={{ padding: '12px', fontSize: '13px', color: '#ccc' }}>
-              Load $10 using just $5 in crypto + your ZYP points. Low gas fees: <b>$0.20 on Base</b>.
+            <div style={{ backgroundColor: '#000', borderRadius: '12px', padding: '12px', marginBottom: '16px', border: '1px solid #222' }}>
+              <table style={{ width: '100%', fontSize: '11px', textAlign: 'left', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid #333', opacity: 0.6 }}>
+                    <th style={{ paddingBottom: '8px' }}>Feature</th>
+                    <th>Zypto</th>
+                    <th>Others</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #111' }}><td style={{ padding: '6px 0' }}>Non-Custodial</td><td>✅</td><td>✅</td></tr>
+                  <tr style={{ borderBottom: '1px solid #111' }}><td style={{ padding: '6px 0' }}>Visa / Bill Pay</td><td>✅</td><td>❌</td></tr>
+                  <tr><td style={{ padding: '6px 0' }}>Native Rewards</td><td>✅</td><td>❌</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <button onClick={handleVerify} disabled={isLoading} style={{ width: '100%', padding: '16px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, color: 'black', borderRadius: '12px', fontWeight: '900', border: 'none', cursor: 'pointer' }}>
+              {isLoading ? "Verifying Base Wallet..." : "Check Your $5 Bonus"}
+            </button>
+          </div>
+        )}
+
+        {/* SAMM 2: VERIFIED + SOCIAL PROOF (TŠEKI PILT) */}
+        {step === 2 && (
+          <div style={{ animation: 'fadeIn 0.4s' }}>
+            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+              <h2 style={{ color: zyptoGreen, fontSize: '22px', fontWeight: '900', margin: '0' }}>VERIFIED!</h2>
+              <p style={{ fontSize: '12px', opacity: 0.7 }}>Wallet eligible for Base Launch perks.</p>
+            </div>
+
+            <div style={{ backgroundColor: '#000', borderRadius: '12px', overflow: 'hidden', border: '1px solid #222', marginBottom: '16px' }}>
+              <img src="/images/receipt-split.png" style={{ width: '100%', display: 'block' }} alt="Verified Utility" />
+              <div style={{ padding: '10px', fontSize: '11px', lineHeight: '1.4', color: '#ccc' }}>
+                <b>Verified Utility:</b> Load $10 using just $5 in crypto + ZYP points. 
+                <br/><span style={{ color: zyptoGreen }}>Gas fees: $0.20 on Base.</span>
+              </div>
+            </div>
+
+            <button onClick={() => setStep(3)} style={{ width: '100%', padding: '14px', backgroundColor: zyptoGreen, color: 'black', borderRadius: '12px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
+              See Reward Options
+            </button>
+          </div>
+        )}
+
+        {/* SAMM 3: LÕPLIKUD CTA-D */}
+        {step === 3 && (
+          <div style={{ animation: 'fadeIn 0.4s' }}>
+            <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '16px' }} alt="Perks" />
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <a href={referralUrl} target="_top" style={{ 
+                display: 'block', textAlign: 'center', padding: '16px', background: `linear-gradient(135deg, #06b6d4, ${zyptoGreen})`, 
+                color: 'black', borderRadius: '12px', fontWeight: '900', textDecoration: 'none', fontSize: '16px'
+              }}>
+                Claim $5 Sign-up Bonus
+              </a>
+              
+              <a href={referralUrl} target="_top" style={{ 
+                display: 'block', textAlign: 'center', padding: '14px', background: 'transparent', 
+                color: zyptoGreen, border: `2px solid ${zyptoGreen}`, borderRadius: '12px', fontWeight: '800', textDecoration: 'none', fontSize: '14px'
+              }}>
+                Get Vault Key Card ($25)
+              </a>
+            </div>
+            <p style={{ fontSize: '10px', textAlign: 'center', marginTop: '12px', opacity: 0.5 }}>
+              Referral code: VMvrJEHIvPb applied.
             </p>
           </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <a href={referralUrl} target="_top" style={{ 
-              display: 'block', textAlign: 'center', padding: '16px', background: zyptoGreen, 
-              color: 'black', borderRadius: '12px', fontWeight: 'bold', textDecoration: 'none' 
-            }}>
-              Claim Your $5 Sign-up Bonus
-            </a>
-            
-            <a href={referralUrl} target="_top" style={{ 
-              display: 'block', textAlign: 'center', padding: '16px', background: 'transparent', 
-              color: zyptoGreen, border: `2px solid ${zyptoGreen}`, borderRadius: '12px', fontWeight: 'bold', textDecoration: 'none' 
-            }}>
-              Get Vault Key Card ($25 Bonus)
-            </a>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <style jsx global>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
     </div>
   );
