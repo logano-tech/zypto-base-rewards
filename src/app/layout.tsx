@@ -20,15 +20,22 @@ export const metadata: Metadata = {
     images: [`${APP_URL}/images/zypto-base-hook.png`],
   },
   other: {
-    // Farcaster Mini App v1 standard
-    'fc:miniapp': 'v1',
-    'fc:miniapp:image': `${APP_URL}/images/zypto-base-hook.png`,
-    'fc:miniapp:button:1': 'Check Rewards',
-    'fc:miniapp:button:1:action': 'link',
-    'fc:miniapp:button:1:target': 'https://ref.zypto.com/VMvrJEHIvPb',
-    // Tagasiühilduvus
-    'fc:frame': 'v2',
-    'fc:frame:image': `${APP_URL}/images/zypto-base-hook.png`,
+    // See peab ühtima sinu JSON-is oleva infoga
+    'fc:frame': JSON.stringify({
+      version: "1",
+      name: "Zypto Rewards",
+      iconUrl: `${APP_URL}/icon.png`,
+      homeUrl: APP_URL,
+      imageUrl: `${APP_URL}/images/zypto-base-hook.png`,
+      button: {
+        title: "Check Rewards",
+        action: {
+          type: "launch_frame",
+          name: "Zypto Rewards",
+          url: APP_URL,
+        },
+      },
+    }),
   },
 };
 
