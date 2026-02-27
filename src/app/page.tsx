@@ -22,7 +22,7 @@ export default function ZyptoMiniApp() {
   return (
     <div style={{ backgroundColor: '#050505', minHeight: '100vh', color: 'white', fontFamily: 'sans-serif', padding: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       
-      {/* HEADER & AGENT PERSONA */}
+      {/* HEADER */}
       <header style={{ textAlign: 'center', marginBottom: '20px' }}>
         <img src="/icon.png" style={{ width: '45px', borderRadius: '12px', marginBottom: '10px' }} alt="Zypto" />
         <h1 style={{ fontSize: '20px', fontWeight: '900', margin: '0' }}>Stop Bridging, Start Spending</h1>
@@ -33,10 +33,9 @@ export default function ZyptoMiniApp() {
 
       <div style={{ width: '100%', maxWidth: '340px', backgroundColor: '#111113', padding: '20px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)' }}>
         
-        {/* SAMM 1: VÕRDLUSTABEL + INTEGRATSIOONID */}
+        {/* SCREEN 1: VÕRDLUSTABEL */}
         {step === 1 && (
           <div style={{ animation: 'fadeIn 0.4s' }}>
-            {/* INTEGRATSIOONI MÄRGID */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginBottom: '16px', fontSize: '9px' }}>
                <span style={{ border: '1px solid #0052ff', color: '#0052ff', padding: '2px 5px', borderRadius: '4px', fontWeight: 'bold' }}>BASE 🔵</span>
                <span style={{ border: '1px solid #375bd2', color: '#375bd2', padding: '2px 5px', borderRadius: '4px', fontWeight: 'bold' }}>CHAINLINK ⛓️</span>
@@ -60,26 +59,20 @@ export default function ZyptoMiniApp() {
               </table>
             </div>
 
-            <button onClick={handleVerify} disabled={isLoading} style={{ width: '100%', padding: '16px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, color: 'black', borderRadius: '12px', fontWeight: '900', border: 'none', cursor: 'pointer' }}>
-              {isLoading ? "Verifying Base Wallet..." : "Check Your $5 Bonus"}
+            <button onClick={handleVerify} disabled={isLoading} style={{ width: '100%', padding: '16px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, color: 'black', borderRadius: '14px', fontWeight: '900', border: 'none', cursor: 'pointer' }}>
+              {isLoading ? "Verifying..." : "Check Your $5 Bonus"}
             </button>
           </div>
         )}
 
-        {/* SAMM 2: VERIFIED + SOCIAL PROOF (TŠEKI PILT) */}
+        {/* SCREEN 2: SPEND OPTIONS + VERIFIED UTILITY */}
         {step === 2 && (
           <div style={{ animation: 'fadeIn 0.4s' }}>
-            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-              <h2 style={{ color: zyptoGreen, fontSize: '22px', fontWeight: '900', margin: '0' }}>VERIFIED!</h2>
-              <p style={{ fontSize: '12px', opacity: 0.7 }}>Wallet eligible for Base Launch perks.</p>
-            </div>
-
-            <div style={{ backgroundColor: '#000', borderRadius: '12px', overflow: 'hidden', border: '1px solid #222', marginBottom: '16px' }}>
-              <img src="/images/receipt-split.png" style={{ width: '100%', display: 'block' }} alt="Verified Utility" />
-              <div style={{ padding: '10px', fontSize: '11px', lineHeight: '1.4', color: '#ccc' }}>
-                <b>Verified Utility:</b> Load $10 using just $5 in crypto + ZYP points. 
-                <br/><span style={{ color: zyptoGreen }}>Gas fees: $0.20 on Base.</span>
-              </div>
+            <img src="/images/zypto-spend-options.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '12px' }} alt="Spend Options" />
+            
+            <div style={{ padding: '10px', backgroundColor: '#000', borderRadius: '12px', border: '1px solid #222', marginBottom: '16px', fontSize: '11px' }}>
+              <b style={{ color: 'white' }}>Verified Utility:</b> Load $10 using just $5 in crypto + ZYP points.
+              <br/><span style={{ color: zyptoGreen }}>Gas fees: $0.20 on Base.</span>
             </div>
 
             <button onClick={() => setStep(3)} style={{ width: '100%', padding: '14px', backgroundColor: zyptoGreen, color: 'black', borderRadius: '12px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
@@ -88,7 +81,7 @@ export default function ZyptoMiniApp() {
           </div>
         )}
 
-        {/* SAMM 3: LÕPLIKUD CTA-D */}
+        {/* SCREEN 3: CLAIM BUTTONS */}
         {step === 3 && (
           <div style={{ animation: 'fadeIn 0.4s' }}>
             <img src="/images/zypto-base-perks.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '16px' }} alt="Perks" />
