@@ -201,7 +201,7 @@ export default function MiniApp() {
 
       <div className="ticker-wrap" style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden' }}>
         <div className="ticker" style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%', animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888' }}>
-          🚀 Already 34 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
+          🚀 Already 39 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
         </div>
       </div>
 
