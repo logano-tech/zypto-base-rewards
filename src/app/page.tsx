@@ -1,37 +1,32 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import sdk from '@farcaster/miniapp-sdk';
+import { useState } from 'react';
 
 export default function MiniApp() {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<null | 'why' | 'calc' | 'community'>(null);
   
-  // Calculator variables - focused on referral/passive income
+  // Calculator variables
   const [numReferrals, setNumReferrals] = useState(5);
   const [refVolume, setRefVolume] = useState(10000);
   const [numVKC, setNumVKC] = useState(2);
 
-  // Gamification Data - Manual updates
+  // Gamification Data
   const alphaBoard = [
+    { wallet: '0x...a1b2', task: '🆕 Newbie', status: 'Verified' },
+    { wallet: '0x...c3d4', task: '🆕 Newbie', status: 'Verified' },
     { wallet: '0x...eed0', task: '👑 Zypto King', status: 'Verified' },
     { wallet: '0x...4a2b', task: '🏦 Bill Slayer', status: 'Verified' },
     { wallet: '0x...99cf', task: '💳 Card Loader', status: 'Verified' },
-    { wallet: '0x...1122', task: '💳 Card Loader', status: 'Verified' },
-    { wallet: '0x...ff7a', task: '🆕 Newbie', status: 'Verified' },
   ];
 
-  const communityGoal = { current: 64200, target: 100000 };
+  const communityGoal = { current: 68500, target: 100000 };
   const progressPercent = (communityGoal.current / communityGoal.target) * 100;
 
   const referralUrl = "https://ref.zypto.com/VMvrJEHIvPb";
   const telegramBotUrl = "https://t.me/ZyptoRewardsBot/rewards"; 
   const zyptoGreen = '#00ff88';
-
-  useEffect(() => {
-    sdk.actions.ready();
-  }, []);
 
   const handleCheckRewards = () => {
     setIsLoading(true);
@@ -67,7 +62,7 @@ export default function MiniApp() {
           <div style={{ animation: 'fadeIn 0.4s' }}>
             <img src="/images/zypto-base-hook.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '8px' }} />
             <h1 style={{ fontSize: '18px', margin: '14px 0', fontWeight: '900' }}>Verify Wallet</h1>
-            <button onClick={handleCheckRewards} disabled={isLoading} style={{ width: '100%', padding: '14px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800', cursor: 'pointer' }}>
+            <button onClick={handleCheckRewards} disabled={isLoading} style={{ width: '100%', padding: '14px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800' }}>
               {isLoading ? "Verifying..." : "Check Rewards"}
             </button>
           </div>
@@ -75,7 +70,7 @@ export default function MiniApp() {
 
         {step === 2 && (
           <div style={{ animation: 'fadeIn 0.4s' }}>
-            <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '8px' }} />
+            <img src="/images/zypto-base-verified.png" style={{ width: '100', borderRadius: '16px', marginBottom: '8px' }} />
             <h1 style={{ color: zyptoGreen, margin: '14px 0', fontSize: '24px', fontWeight: '900' }}>VERIFIED!</h1>
             <button onClick={() => setStep(3)} style={{ width: '100%', padding: '14px', backgroundColor: zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800' }}>See Rewards</button>
           </div>
@@ -87,18 +82,18 @@ export default function MiniApp() {
             <a href={referralUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', width: '100%', padding: '16px 0', marginTop: '16px', background: `linear-gradient(135deg, #06b6d4, ${zyptoGreen})`, color: 'black', textDecoration: 'none', borderRadius: '12px', fontWeight: '900', fontSize: '18px', boxShadow: '0 8px 20px rgba(0,255,136,0.3)' }}>Claim Rewards</a>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '16px' }}>
-              <button onClick={() => setActiveOverlay('why')} style={{ padding: '10px', fontSize: '11px', fontWeight: '700', background: 'rgba(255,255,255,0.03)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px', cursor: 'pointer' }}>Why Zypto?</button>
-              <button onClick={() => setActiveOverlay('calc')} style={{ padding: '10px', fontSize: '11px', fontWeight: '700', background: 'rgba(255,255,255,0.03)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px', cursor: 'pointer' }}>Earn Calc</button>
-              <button onClick={() => setActiveOverlay('community')} style={{ gridColumn: 'span 2', padding: '10px', fontSize: '11px', fontWeight: '700', background: 'rgba(0, 255, 136, 0.05)', color: zyptoGreen, border: '1px solid rgba(0, 255, 136, 0.2)', borderRadius: '10px', cursor: 'pointer' }}>🏆 Community Alpha Board</button>
+              <button onClick={() => setActiveOverlay('why')} style={{ padding: '10px', fontSize: '11px', fontWeight: '700', background: 'rgba(255,255,255,0.03)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px' }}>Why Zypto?</button>
+              <button onClick={() => setActiveOverlay('calc')} style={{ padding: '10px', fontSize: '11px', fontWeight: '700', background: 'rgba(255,255,255,0.03)', color: 'white', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '10px' }}>Earn Calc</button>
+              <button onClick={() => setActiveOverlay('community')} style={{ gridColumn: 'span 2', padding: '10px', fontSize: '11px', fontWeight: '700', background: 'rgba(0, 255, 136, 0.05)', color: zyptoGreen, border: '1px solid rgba(0, 255, 136, 0.2)', borderRadius: '10px' }}>🏆 Community Alpha Board</button>
             </div>
           </div>
         )}
       </div>
 
       {activeOverlay && (
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.92)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', animation: 'fadeIn 0.2s' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.92)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
           <div style={{ backgroundColor: '#111113', width: '100%', maxWidth: '320px', borderRadius: '28px', padding: '24px', border: '1px solid rgba(255,255,255,0.1)', position: 'relative', maxHeight: '90vh', overflowY: 'auto' }}>
-            <button onClick={() => setActiveOverlay(null)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'none', border: 'none', color: '#666', fontSize: '22px', cursor: 'pointer' }}>✕</button>
+            <button onClick={() => setActiveOverlay(null)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'none', border: 'none', color: '#666', fontSize: '22px' }}>✕</button>
 
             {activeOverlay === 'why' && (
               <div style={{ textAlign: 'left' }}>
@@ -185,7 +180,7 @@ export default function MiniApp() {
                     <span style={{ color: zyptoGreen }}>{progressPercent.toFixed(0)}%</span>
                   </div>
                   <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', overflow: 'hidden' }}>
-                    <div style={{ width: `${progressPercent}%`, height: '100%', background: `linear-gradient(90deg, #06b6d4, ${zyptoGreen})`, borderRadius: '10px', transition: 'width 1s ease-in-out' }}></div>
+                    <div style={{ width: `${progressPercent}%`, height: '100%', background: `linear-gradient(90deg, #06b6d4, ${zyptoGreen})`, borderRadius: '10px' }}></div>
                   </div>
                   <p style={{ fontSize: '9px', color: '#666', marginTop: '6px', textAlign: 'center' }}>🎯 Reach 100% to unlock a $25 $ZYPTO raffle!</p>
                 </div>
@@ -201,7 +196,7 @@ export default function MiniApp() {
 
       <div className="ticker-wrap" style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden' }}>
         <div className="ticker" style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%', animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888' }}>
-          🚀 Already 54 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
+          🚀 Already 39 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
         </div>
       </div>
 
