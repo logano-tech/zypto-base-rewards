@@ -1,18 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import sdk from '@farcaster/miniapp-sdk'; // Toome SDK tagasi "Ready" märguande jaoks
 
 export default function MiniApp() {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState<null | 'why' | 'calc' | 'community'>(null);
   
-  // Calculator variables
+  // Kalkulaatori muutujad
   const [numReferrals, setNumReferrals] = useState(5);
   const [refVolume, setRefVolume] = useState(10000);
   const [numVKC, setNumVKC] = useState(2);
 
-  // Gamification Data
+  // Mängustamise andmed - 39 legendi põhjal uuendatud
   const alphaBoard = [
     { wallet: '0x...a1b2', task: '🆕 Newbie', status: 'Verified' },
     { wallet: '0x...c3d4', task: '🆕 Newbie', status: 'Verified' },
@@ -27,6 +28,11 @@ export default function MiniApp() {
   const referralUrl = "https://ref.zypto.com/VMvrJEHIvPb";
   const telegramBotUrl = "https://t.me/ZyptoRewardsBot/rewards"; 
   const zyptoGreen = '#00ff88';
+
+  // Oluline: See rida teeb "Ready call" roheliseks
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
 
   const handleCheckRewards = () => {
     setIsLoading(true);
@@ -62,7 +68,7 @@ export default function MiniApp() {
           <div style={{ animation: 'fadeIn 0.4s' }}>
             <img src="/images/zypto-base-hook.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '8px' }} />
             <h1 style={{ fontSize: '18px', margin: '14px 0', fontWeight: '900' }}>Verify Wallet</h1>
-            <button onClick={handleCheckRewards} disabled={isLoading} style={{ width: '100%', padding: '14px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800' }}>
+            <button onClick={handleCheckRewards} disabled={isLoading} style={{ width: '100%', padding: '14px', backgroundColor: isLoading ? '#1a1a1a' : zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800', cursor: 'pointer' }}>
               {isLoading ? "Verifying..." : "Check Rewards"}
             </button>
           </div>
@@ -70,7 +76,7 @@ export default function MiniApp() {
 
         {step === 2 && (
           <div style={{ animation: 'fadeIn 0.4s' }}>
-            <img src="/images/zypto-base-verified.png" style={{ width: '100', borderRadius: '16px', marginBottom: '8px' }} />
+            <img src="/images/zypto-base-verified.png" style={{ width: '100%', borderRadius: '16px', marginBottom: '8px' }} />
             <h1 style={{ color: zyptoGreen, margin: '14px 0', fontSize: '24px', fontWeight: '900' }}>VERIFIED!</h1>
             <button onClick={() => setStep(3)} style={{ width: '100%', padding: '14px', backgroundColor: zyptoGreen, color: 'black', border: 'none', borderRadius: '12px', fontWeight: '800' }}>See Rewards</button>
           </div>
@@ -194,6 +200,7 @@ export default function MiniApp() {
         </div>
       )}
 
+      {/* TICKER - 39 Legendit */}
       <div className="ticker-wrap" style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', backgroundColor: 'rgba(17, 17, 19, 0.8)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '10px 0', overflow: 'hidden' }}>
         <div className="ticker" style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingLeft: '100%', animation: 'marquee 25s linear infinite', fontSize: '12px', fontWeight: 'bold', color: '#888' }}>
           🚀 Already 54 legends joined via this mini-app! • <span style={{ color: zyptoGreen }}>$5 Instant Bonus Active</span> • 0.1% Lifetime Swap Commissions • $25 Vault Card Bonus • Available in 190+ countries
