@@ -6,6 +6,11 @@ const APP_URL = 'https://zypto-base-rewards.vercel.app';
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
   description: 'Verify your wallet and unlock exclusive rewards on Base',
+  // See on standardne viis Next.js-is öelda, et leht on indekseeritav
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: 'Zypto Rewards Hub',
     description: 'Claim your $5 bonus and spend crypto on Base',
@@ -19,18 +24,18 @@ export const metadata: Metadata = {
     images: [`${APP_URL}/images/zypto-base-hook.png`],
   },
   other: {
-    // Base.dev seaded
     'base:app_id': '69b5295868ed07045acf8ded',
     
-    // PARANDUS: false tähendab, et äpp ON otsingutulemustes nähtav
-    'base:app_noindex': 'false', 
+    // Proovime ilma jutumärkideta (boolean väärtus)
+    // Kui see ikka annab viga, siis Base'i tööriist võib oodata teksti "false" 
+    // aga ilma tühikuteta või muus formaadis. 
+    'base:app_noindex': false, 
     
     'base:app_name': 'Zypto Rewards',
     'base:app_description': 'Verify your wallet and unlock exclusive rewards on Base',
     'base:app_url': APP_URL,
     'base:app_icon': `${APP_URL}/icon.png`,
     
-    // Farcaster Frame sünkroonimine
     'fc:frame': JSON.stringify({
       version: "1",
       name: "Zypto Rewards",
