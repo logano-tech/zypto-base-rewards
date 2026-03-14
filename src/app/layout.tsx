@@ -6,8 +6,12 @@ const APP_URL = 'https://zypto-base-rewards.vercel.app';
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
   description: 'Verify your wallet and unlock exclusive rewards on Base',
-  // See rida peaks lahendama noindex vea
-  robots: "index, follow", 
+  openGraph: {
+    title: 'Zypto Rewards Hub',
+    description: 'Claim your $5 bonus and spend crypto on Base',
+    url: APP_URL,
+    images: [`${APP_URL}/images/zypto-base-hook.png`],
+  },
   other: {
     'base:app_id': '69b5295868ed07045acf8ded',
     'base:app_name': 'Zypto Rewards',
@@ -34,6 +38,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* See on kriitiline rida! Kirjutame selle otse Head-i, et vältida Next.js-i poolset "invalid input" viga */}
+        <meta name="base:app_noindex" content="false" />
+      </head>
       <body style={{ margin: 0, padding: 0, backgroundColor: '#050505' }}>
         {children}
       </body>
