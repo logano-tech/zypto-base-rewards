@@ -6,49 +6,26 @@ const APP_URL = 'https://zypto-base-rewards.vercel.app';
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
   description: 'Verify your wallet and unlock exclusive rewards on Base',
-  // See on standardne viis Next.js-is öelda, et leht on indekseeritav
-  robots: {
-    index: true,
-    follow: true,
-  },
   openGraph: {
     title: 'Zypto Rewards Hub',
     description: 'Claim your $5 bonus and spend crypto on Base',
     url: APP_URL,
     images: [`${APP_URL}/images/zypto-base-hook.png`],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Zypto Rewards Hub',
-    description: 'Stop Bridging, Start Spending on Base',
-    images: [`${APP_URL}/images/zypto-base-hook.png`],
-  },
   other: {
     'base:app_id': '69b5295868ed07045acf8ded',
-    
-    // Proovime ilma jutumärkideta (boolean väärtus)
-    // Kui see ikka annab viga, siis Base'i tööriist võib oodata teksti "false" 
-    // aga ilma tühikuteta või muus formaadis. 
-    'base:app_noindex': false, 
-    
     'base:app_name': 'Zypto Rewards',
     'base:app_description': 'Verify your wallet and unlock exclusive rewards on Base',
     'base:app_url': APP_URL,
     'base:app_icon': `${APP_URL}/icon.png`,
-    
     'fc:frame': JSON.stringify({
       version: "1",
       name: "Zypto Rewards",
-      iconUrl: `${APP_URL}/icon.png`,
       homeUrl: APP_URL,
       imageUrl: `${APP_URL}/images/zypto-base-hook.png`,
       button: {
         title: "Check Rewards",
-        action: {
-          type: "launch_frame",
-          name: "Zypto Rewards",
-          url: APP_URL,
-        },
+        action: { type: "launch_frame", name: "Zypto Rewards", url: APP_URL },
       },
     }),
   },
@@ -61,6 +38,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Lisame sildi siia käsitsi, et vältida Next.js metadata süntaksivigu */}
+        <meta name="base:app_noindex" content="false" />
+      </head>
       <body style={{ margin: 0, padding: 0, backgroundColor: '#050505' }}>
         {children}
       </body>
