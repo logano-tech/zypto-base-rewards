@@ -1,16 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const APP_URL = 'https://zypto-base-rewards.vercel.app';
 
+// Base ootab tihti standardseid seadeid
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
   description: 'Verify your wallet and unlock exclusive rewards on Base',
-  openGraph: {
-    title: 'Zypto Rewards Hub',
-    description: 'Claim your $5 bonus and spend crypto on Base',
-    url: APP_URL,
-    images: [`${APP_URL}/images/zypto-base-hook.png`],
+  // See on ametlik Next.js viis öelda "index"
+  robots: {
+    index: true,
+    follow: true,
   },
   other: {
     'base:app_id': '69b5295868ed07045acf8ded',
@@ -38,10 +43,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* See on kriitiline rida! Kirjutame selle otse Head-i, et vältida Next.js-i poolset "invalid input" viga */}
-        <meta name="base:app_noindex" content="false" />
-      </head>
       <body style={{ margin: 0, padding: 0, backgroundColor: '#050505' }}>
         {children}
       </body>
