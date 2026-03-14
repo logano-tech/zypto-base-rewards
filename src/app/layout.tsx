@@ -19,7 +19,14 @@ export const metadata: Metadata = {
     images: [`${APP_URL}/images/zypto-base-hook.png`],
   },
   other: {
-    // See osa sünkroonib sinu farcaster.json-iga, et märk oleks "Valid"
+    // Base.dev ja Base App Directory spetsiifilised meta-sildid
+    'base:app_id': '69b5295868ed07045acf8ded',
+    'base:app_name': 'Zypto Rewards',
+    'base:app_description': 'Verify your wallet and unlock exclusive rewards on Base',
+    'base:app_url': APP_URL,
+    'base:app_icon': `${APP_URL}/icon.png`,
+    
+    // Farcaster Frame sünkroonimine
     'fc:frame': JSON.stringify({
       version: "1",
       name: "Zypto Rewards",
