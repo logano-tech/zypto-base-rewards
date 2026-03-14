@@ -19,8 +19,9 @@ export const metadata: Metadata = {
     images: [`${APP_URL}/images/zypto-base-hook.png`],
   },
   other: {
-    // Base.dev ja Base App Directory spetsiifilised meta-sildid
+    // Base.dev ja noindex parandus
     'base:app_id': '69b5295868ed07045acf8ded',
+    'base:app_noindex': 'false',
     'base:app_name': 'Zypto Rewards',
     'base:app_description': 'Verify your wallet and unlock exclusive rewards on Base',
     'base:app_url': APP_URL,
