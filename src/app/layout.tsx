@@ -3,20 +3,30 @@ import "./globals.css";
 
 const APP_URL = 'https://zypto-base-rewards.vercel.app';
 
-// Base ootab tihti standardseid seadeid
+// Viewport määrab, kuidas äpp mobiilis välja näeb
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  themeColor: '#00ff88', // See muudab brauseri ülariba Zypto roheliseks
 };
 
 export const metadata: Metadata = {
   title: 'Zypto Rewards',
   description: 'Verify your wallet and unlock exclusive rewards on Base',
-  // See on ametlik Next.js viis öelda "index"
+  
+  // LISA NEED READ: Need on kriitilised ikooni kuvamiseks ajaloos
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
+
   robots: {
     index: true,
     follow: true,
   },
+  
+  // Sinu lisatud Base ja Farcasteri spetsiifilised seaded
   other: {
     'base:app_id': '69b5295868ed07045acf8ded',
     'base:app_name': 'Zypto Rewards',
@@ -30,7 +40,11 @@ export const metadata: Metadata = {
       imageUrl: `${APP_URL}/images/zypto-base-hook.png`,
       button: {
         title: "Check Rewards",
-        action: { type: "launch_frame", name: "Zypto Rewards", url: APP_URL },
+        action: { 
+          type: "launch_frame", 
+          name: "Zypto Rewards", 
+          url: APP_URL 
+        },
       },
     }),
   },
